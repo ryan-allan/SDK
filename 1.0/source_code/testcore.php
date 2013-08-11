@@ -1,4 +1,3 @@
-
 //Test Textfield and Button
 <form action="testcore.php" method="get">
 Your number must be of the format 1-XXX-XXX-XXXX (excluding hyphens) :<input type="text" name="number">
@@ -10,7 +9,7 @@ Your number must be of the format 1-XXX-XXX-XXXX (excluding hyphens) :<input typ
 
 include ('skycore_sdk.php');
 
-$key = "NiP1t1WsCPwHz8ujHRLxMtZdA9de8AqU";
+$key = "";
 $campid = "1605";
 $number = $_GET["number"];
 
