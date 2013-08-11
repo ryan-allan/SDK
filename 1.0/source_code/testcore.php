@@ -9,7 +9,7 @@ Your number must be of the format 1-XXX-XXX-XXXX (excluding hyphens) :<input typ
 
 include ('skycore_sdk.php');
 
-$key = "";
+$key = ""; //Enter a working key here.
 $campid = "1605";
 $number = $_GET["number"];
 
