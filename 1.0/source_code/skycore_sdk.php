@@ -30,7 +30,6 @@ class Skycore  {
 			//Builds the final request URL by concatenating the base URL with the query
 			http_build_url('https://scale-secure.skycore.com/API/wxml/1.3/index.php?',
 				array(
-					
 					"query" => $api_query
 				)
 		));
