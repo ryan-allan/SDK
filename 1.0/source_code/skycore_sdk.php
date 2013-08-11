@@ -4,7 +4,6 @@ include ("buildurllibrary.inc.php");
 
 class Skycore  {
 	
-	//Constructor
 	public function Skycore($key)	{
 	
 		$api_key = "api_key=" . $key;
