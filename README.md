@@ -1,4 +1,4 @@
-<h1>Welcome to the Skycore SDK Documentation</h1>
+<h1>Skycore SDK</h1>
 
 Click the link below to access the latest version of this software.
 
