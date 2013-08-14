@@ -16,6 +16,6 @@ $number = $_GET["number"];
 
 $skycore = new Skycore($key);
 
-$skycore->subscribe($key, $number, $campid);
+$skycore->subscribe($number, $campid);
 
 ?>
