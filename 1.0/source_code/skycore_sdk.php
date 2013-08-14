@@ -12,7 +12,7 @@
 		//-------------------------------
 		public function subscribe($number, $campid)	{
 
-			//XML Query Information
+			//Assemble the XML array
 			//---------------------
 			$POSTArray['XML']=
 			"<REQUEST>
