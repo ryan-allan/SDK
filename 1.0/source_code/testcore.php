@@ -13,9 +13,7 @@ $key = ""; //Enter a working key here.
 $campid = "1605";
 $number = $_GET["number"];
 
-
 $skycore = new Skycore($key);
-
 $skycore->subscribe($number, $campid);
 
 ?>
