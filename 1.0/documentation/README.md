@@ -7,7 +7,7 @@ A current list of the calls and their parameters can be found here at https://gi
 	
 	Format Example:
 	----------------------------------------
-	<pre>$key = "YOUR_API_KEY_HERE";
+	$key = "YOUR_API_KEY_HERE";
 	
 	$request = array(
 		'action' => 'API_CALL_ACTION_HERE',
@@ -21,5 +21,5 @@ A current list of the calls and their parameters can be found here at https://gi
 	);
 
 	$skycore = new Skycore($key);
-	$skycore->makeAPI_Call($request);</pre>
+	$skycore->makeAPI_Call($request);
 	----------------------------------------
