@@ -34,7 +34,7 @@ A current list of the calls and their parameters can be found <a href="https://g
 			'sequence' => array(
 				'slide duration="10"' => array(
 					'image' => array(
-						'url' => 'http://cdn.arstechnica.net/wp-content/uploads/2012/10/01_Place_Peters-640x450.jpg'
+						'url' => 'http://example.jpg'
 					),
 					'text' => 'Some Text'
 				)
