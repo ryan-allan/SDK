@@ -5,7 +5,7 @@
 This SDK will allow for implementation of the Skycore API via instantiation of a Skycore object and passing an array containing the proper parameters to the makeAPI_Call function.
 A current list of the calls and their parameters can be found here at https://github.com/SkycoreMobile/API .
 	
-	Format Example:
+<strong>Format Example:</strong>
 	----------------------------------------
 	$key = "YOUR_API_KEY_HERE";
 	
