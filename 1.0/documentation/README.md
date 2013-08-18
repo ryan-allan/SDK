@@ -1,5 +1,3 @@
-<h1>Skycore SDK Documentation</h1>
-
 <h2>Skycore SDK v1.0</h2>
 
 This SDK will allow for implementation of the Skycore API via instantiation of a Skycore object and the passing of an array containing the proper parameters to the makeAPI_Call function.
