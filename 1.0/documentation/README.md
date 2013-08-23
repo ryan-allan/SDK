@@ -9,10 +9,9 @@ function to an object and access any of the data from the response via this obje
 
 A current list of the calls and their parameters can be found <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/API_METHODS.md">here</a> .
 
+<h6>The following examples help in conjunction with the <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> file for optimal understanding of the SDK functionalities</h6>
+
 <h2>Format Examples:</h2>
-
-<h5>The following examples help in conjunction with the <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> file for optimal understanding of the SDK functionalities</h5>
-
 
 <strong>Include the SDK and initialize your API Key and URL</strong>
 <pre>
