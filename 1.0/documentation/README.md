@@ -74,6 +74,7 @@ $request = array(
 </pre>
 
 <strong>Build Example Request 4:</strong>
+Note: Any "get" requests will return the desired information in the response object.
 <pre>
 $request = array(
 	'action' => 'getemailids'
