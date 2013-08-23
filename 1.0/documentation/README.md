@@ -103,19 +103,20 @@ print_r ($skycoreResponse);
 <strong>Basic Format:</strong>
 $skycoreResponse->DESIRED_INFO_TAG;
 
-<strong>Display the status of the request (Failure/Success)</strong>
+<strong>Example 1:</strong>
+Display the status of the request (Failure/Success)
 <pre>
 echo $skycoreResponse->STATUS;
 </pre>
 
-<strong>Example 1:</strong>
+<strong>Example 2:</strong>
 For Error Information (If the status returns as 'Failure':
 <pre>
 echo $skycoreResponse->ERRORCODE;
 echo $skycoreResponse->ERRORINFO;
 </pre>
 
-<strong>Example 2:</strong>
+<strong>Example 3:</strong>
 For the 'Example 4' "get" request:
 <pre>
 echo $skycoreResponse->EMAILIDS;
