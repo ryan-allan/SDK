@@ -23,9 +23,11 @@ Enter Name of the MMS:<input type="text" name="name"><BR/>
 <strong>Slide 1 Information:</strong><BR/>
 Enter Duration:<input type="text" name="duration1"><BR/>
 Enter Image URL:<input type="text" name="url1"><BR/>
+Enter Text:<input type="text" name="text1"><BR/>
 <strong>Slide 2 Information:</strong><BR/>
 Enter Duration:<input type="text" name="duration2"><BR/>
 Enter Image URL:<input type="text" name="url2"><BR/>
+Enter Text:<input type="text" name="text2"><BR/>
 							  
 <input type="submit" name="submit" value="Save MMS">
 
