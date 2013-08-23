@@ -11,6 +11,7 @@ Enter Image URL :<input type="text" name="url">
 include ('skycore_sdk.php');
 //-------Dev Key-------
 $key = "YOUR_API_KEY_HERE";
+$url = 'API_URL_HERE';
 
 //-------Simple Test-------
 
@@ -71,7 +72,7 @@ $request = array(
 */	
 
 //Build a skycore object
-$skycore = new Skycore($key);
+$skycore = new Skycore($key, $url);
 
 //Send a request to the object and get it's response
 $skycoreResponse = $skycore->makeAPI_Call($request);
