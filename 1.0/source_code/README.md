@@ -11,3 +11,9 @@ One will need to add the API URL to the SDK here:
 </pre>
 
 <a href="/1.0/source_code/testcore.php">testcore.php</a> is a small and simple implementation of the SDK to help give new users an idea of how the SDK works.
+One will need to add the API key here:
+<pre>
+include ('skycore_sdk.php');
+//-------Dev Key-------
+$key = "YOUR_API_KEY_HERE";
+</pre>
