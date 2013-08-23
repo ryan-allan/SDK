@@ -18,7 +18,7 @@ A current list of the calls and their parameters can be found <a href="https://g
 <pre>
 include ('skycore_sdk.php');
 
-$key = "YOUR_API_KEY_HERE";
+$key = "<strong>YOUR_API_KEY_HERE</strong>";
 </pre>
 
 <strong>Build Example Request 1:</strong>
