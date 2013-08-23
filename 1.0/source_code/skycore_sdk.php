@@ -40,37 +40,37 @@ class Skycore	{
 	//Skycore constructor variables
 	//-----------------------------
 	private $api_key,
-			$baseURL;
+		$baseURL;
 			
 	//innerArrayCheck variables
 	//-------------------------
 	private $innerXML_tag,
-			$innerRequestInfo,
-			$innerArrayData,
-			$innerArrayCount,
-			$buildTag,
-			$buildTag2,
-			$currentChar,
-			$currentChar2,
-			$counter2,
-			$counter3,
-			$counter4;
+		$innerRequestInfo,
+		$innerArrayData,
+		$innerArrayCount,
+		$buildTag,
+		$buildTag2,
+		$currentChar,
+		$currentChar2,
+		$counter2,
+		$counter3,
+		$counter4;
 				
 	//innerArrayCheck arrays
 	//----------------------
 	private $innerArray,
-			$innerArray_tag = array();
+		$innerArray_tag = array();
 				
 	//makeAPI_Call variables
 	//----------------------
 	private $currentXML_tag, 
-			$requestInfo, 
-			$XML_Request, 
-			$response,
-			$counter1;
+		$requestInfo, 
+		$XML_Request, 
+		$response,
+		$counter1;
 				
 	private $array_tag, 
-			$XML_RequestArray = array();
+		$XML_RequestArray = array();
 				
 	
 	//Constructor
@@ -168,234 +168,234 @@ class Skycore	{
 			
 	}
 
-		//Function for an API call
-		//------------------------
-		public function makeAPI_Call($request)	{
+	//Function for an API call
+	//------------------------
+	public function makeAPI_Call($request)	{
 		
-			$requestVerification = $request;
-			$requestVerification['api_key'] = $this->api_key;	
-			$requestStatus = $this->verifyRequest($requestVerification);
+		$requestVerification = $request;
+		$requestVerification['api_key'] = $this->api_key;	
+		$requestStatus = $this->verifyRequest($requestVerification);
 			
-			if(gettype($requestStatus) != 'object')	{
+		if(gettype($requestStatus) != 'object')	{
 			
-				$requestStatus = "
-				<RESPONSE>
-				<STATUS>Success</STATUS>
-				</RESPONSE>";
+			$requestStatus = "
+			<RESPONSE>
+			<STATUS>Success</STATUS>
+			</RESPONSE>";
 				
-				$requestStatus = simplexml_load_string($requestStatus);
-			}
-			
-			if($requestStatus->STATUS == 'Failure')	{
-				return $requestStatus;
-				exit();
-			}
-			
-			for($counter1 = 0;$counter1 < count($request); $counter1++)	{
-			
-				if($counter1 == 0)	{
-					//Initialize the XML Request
-					$XML_Request = "<REQUEST>" . "<API_KEY>" . $this->api_key . "</API_KEY>";	
-				}
-				
-				//Turn an array key into an array of just that key
-				$array_tag = array_keys($request, array_values($request)[$counter1]);
-				
-				//Convert the $array_tag into a string to be used as an XML tag
-				$currentXML_tag = array_shift($array_tag);
-				
-				//Check for multidimensional arrays
-				if ("array" == gettype(array_values($request)[$counter1]))	{
-					$requestInfo = $this->innerArrayCheck($request, $currentXML_tag);
-					$XML_Request = $XML_Request . $requestInfo;
-				}
-				else	{
-					$requestInfo = $request[$currentXML_tag];
-					$XML_Request = $XML_Request . "<" . strtoupper($currentXML_tag) . ">" . $requestInfo . "</" . strtoupper($currentXML_tag) . ">";
-				}
-				
-				if($counter1 == (count($request)) - 1)	{
-					//Complete the XML request
-					$XML_Request = $XML_Request . "</". "REQUEST" . ">";
-				}
-				
-			}
-			
-			//Build the request array
-			$XML_RequestArray['XML']= $XML_Request;
-			
-			//Make the HTTPS request and return the response
-			return $this->httpsRequest($XML_RequestArray);
+			$requestStatus = simplexml_load_string($requestStatus);
 		}
-		
-		//Function to make an HTTPS request
-		//---------------------------------
-		private function httpsRequest($XML_RequestArray)	{
-		
-			$ch = curl_init();
 			
-			curl_setopt($ch, CURLOPT_URL, $this->baseURL);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $XML_RequestArray);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			
-			//set XML response
-			$response = curl_exec($ch);
-			
-			curl_close($ch);
-			
-			//Convert response to simple XML object
-			$XML_Response = simplexml_load_string($response);
-			
-			//Call for Response Check
-			return $XML_Response;
+		if($requestStatus->STATUS == 'Failure')	{
+			return $requestStatus;
+			exit();
 		}
+			
+		for($counter1 = 0;$counter1 < count($request); $counter1++)	{
+			
+			if($counter1 == 0)	{
+				//Initialize the XML Request
+				$XML_Request = "<REQUEST>" . "<API_KEY>" . $this->api_key . "</API_KEY>";	
+			}
+				
+			//Turn an array key into an array of just that key
+			$array_tag = array_keys($request, array_values($request)[$counter1]);
+				
+			//Convert the $array_tag into a string to be used as an XML tag
+			$currentXML_tag = array_shift($array_tag);
+				
+			//Check for multidimensional arrays
+			if ("array" == gettype(array_values($request)[$counter1]))	{
+				$requestInfo = $this->innerArrayCheck($request, $currentXML_tag);
+				$XML_Request = $XML_Request . $requestInfo;
+			}
+			else	{
+				$requestInfo = $request[$currentXML_tag];
+				$XML_Request = $XML_Request . "<" . strtoupper($currentXML_tag) . ">" . $requestInfo . "</" . strtoupper($currentXML_tag) . ">";
+			}
+				
+			if($counter1 == (count($request)) - 1)	{
+				//Complete the XML request
+				$XML_Request = $XML_Request . "</". "REQUEST" . ">";
+			}
+				
+		}
+			
+		//Build the request array
+		$XML_RequestArray['XML']= $XML_Request;
+			
+		//Make the HTTPS request and return the response
+		return $this->httpsRequest($XML_RequestArray);
+	}
 		
-		//Function to verify the request before sending
-		//---------------------------------------------
-		function verifyRequest ($content_values)	{
+	//Function to make an HTTPS request
+	//---------------------------------
+	private function httpsRequest($XML_RequestArray)	{
 		
-			//Generic Field Requirements
-			if ($content_values['action']=="") {
-				return $this->ReportXMLError("E101", "'action' required/Invalid Action", $content_values);
-			}
+		$ch = curl_init();
 			
-			if ($content_values['api_key']=="") {
-				return $this->ReportXMLError("E102", "'api_key' required", $content_values);
-			}
+		curl_setopt($ch, CURLOPT_URL, $this->baseURL);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $XML_RequestArray);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			
-			//Send SMS
-			elseif (strtolower($content_values['action'])=='sendsms') {
-        
-				if ($content_values['to']=="") {
-					return $this->ReportXMLError("E201", "The receiver number is required", $content_values);
-				}
-        
-				if ($content_values['text'] =="") {
-					return $this->ReportXMLError("E712", "The 'text' is required", $content_values);
-				}
-        
-				if ($content_values['from'] =="") {
-					return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
-				}
-			}
+		//set XML response
+		$response = curl_exec($ch);
+		
+		curl_close($ch);
 			
-			//Save MMS
-			elseif (strtolower($content_values['action'])=='savemms') {
-				
-				if ($content_values['content']['name']=="") {
-					return $this->ReportXMLError("E301", "The 'name' is required", $content_values);
-				}
-				
-				//Take an the sequence as a numerically indexed array to work around the variation in slide tags
-				$numericArray = array_values($content_values['content']['sequence']);
-				
-				if ($numericArray[0]=="" || $numericArray[0]==0) {
-					return $this->ReportXMLError("E302", "No slides", $content_values);
-				}
+		//Convert response to simple XML object
+		$XML_Response = simplexml_load_string($response);
+			
+		//Call for Response Check
+		return $XML_Response;
+	}
+		
+	//Function to verify the request before sending
+	//---------------------------------------------
+	function verifyRequest ($content_values)	{
+		
+		//Generic Field Requirements
+		if ($content_values['action']=="") {
+			return $this->ReportXMLError("E101", "'action' required/Invalid Action", $content_values);
+		}
+			
+		if ($content_values['api_key']=="") {
+			return $this->ReportXMLError("E102", "'api_key' required", $content_values);
+		}
+			
+		//Send SMS
+		elseif (strtolower($content_values['action'])=='sendsms') {
         
-				for ($i=0; $i<count($numericArray); $i++) {
+			if ($content_values['to']=="") {
+				return $this->ReportXMLError("E201", "The receiver number is required", $content_values);
+			}
+        
+			if ($content_values['text'] =="") {
+				return $this->ReportXMLError("E712", "The 'text' is required", $content_values);
+			}
+        
+			if ($content_values['from'] =="") {
+				return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
+			}
+		}
+			
+		//Save MMS
+		elseif (strtolower($content_values['action'])=='savemms') {
+				
+			if ($content_values['content']['name']=="") {
+				return $this->ReportXMLError("E301", "The 'name' is required", $content_values);
+			}
+				
+			//Take an the sequence as a numerically indexed array to work around the variation in slide tags
+			$numericArray = array_values($content_values['content']['sequence']);
+				
+			if ($numericArray[0]=="" || $numericArray[0]==0) {
+				return $this->ReportXMLError("E302", "No slides", $content_values);
+			}
+        
+			for ($i=0; $i<count($numericArray); $i++) {
 					
-					if ($numericArray[$i]['image']['url']=="" && $numericArray[$i]['audio']['url']=="" && $numericArray[$i]['video']['url']=="" && $numericArray[$i]['text']['value']=="") {
-						return $this->ReportXMLError("E303", "Slide ".$i." is empty", $content_values);
-					}
+				if ($numericArray[$i]['image']['url']=="" && $numericArray[$i]['audio']['url']=="" && $numericArray[$i]['video']['url']=="" && $numericArray[$i]['text']['value']=="") {
+					return $this->ReportXMLError("E303", "Slide ".$i." is empty", $content_values);
 				}
+			}
 					
-			}
+		}
 			
-			//Get Sending Statistics
-			elseif (strtolower($content_values['action'])=='getsendingstatistics') {
+		//Get Sending Statistics
+		elseif (strtolower($content_values['action'])=='getsendingstatistics') {
         
-				if ($content_values['start_date'] =="") {
-					return $this->ReportXMLError("E506", "'start_date' is required", $content_values);
-				}
+			if ($content_values['start_date'] =="") {
+				return $this->ReportXMLError("E506", "'start_date' is required", $content_values);
+			}
         
-				if ($content_values['end_date'] =="") {
-					return $this->ReportXMLError("E506", "'end_date' is required", $content_values);
-				}
+			if ($content_values['end_date'] =="") {
+				return $this->ReportXMLError("E506", "'end_date' is required", $content_values);
+			}
         
-				$date_format='/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/';
-				preg_match($date_format, trim($content_values['start_date']), $matches);
+			$date_format='/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/';
+			preg_match($date_format, trim($content_values['start_date']), $matches);
 
-				if ($matches[0]!='') {
-					$content_values['start_timestamp'] = strtotime($content_values['start_date']);
+			if ($matches[0]!='') {
+				$content_values['start_timestamp'] = strtotime($content_values['start_date']);
             
-					if ($content_values['start_timestamp']===-1) {
-						return $this->ReportXMLError("E508", "Invalid 'start_date' format", $content_values);
-					}
+				if ($content_values['start_timestamp']===-1) {
+					return $this->ReportXMLError("E508", "Invalid 'start_date' format", $content_values);
 				}
-				else {
-					return $this->ReportXMLError("E507", "Invalid 'start_date' format", $content_values);
-				}
+			}
+			else {
+				return $this->ReportXMLError("E507", "Invalid 'start_date' format", $content_values);
+			}
         
-				preg_match($date_format, trim($content_values['end_date']), $matches);
+			preg_match($date_format, trim($content_values['end_date']), $matches);
 
-				if ($matches[0]!='') {
-					$content_values['end_timestamp'] = strtotime($content_values['end_date']);
-            
-					if ($content_values['end_timestamp']===-1) {
-						return $this->ReportXMLError("E508", "Invalid 'end_date' format", $content_values);
-					}
-				}
-				else {
-					return $this->ReportXMLError("E507", "Invalid 'end_date' format", $content_values);
+			if ($matches[0]!='') {
+				$content_values['end_timestamp'] = strtotime($content_values['end_date']);
+					
+				if ($content_values['end_timestamp']===-1) {
+					return $this->ReportXMLError("E508", "Invalid 'end_date' format", $content_values);
 				}
 			}
+			else {
+				return $this->ReportXMLError("E507", "Invalid 'end_date' format", $content_values);
+			}
+		}
 			
-			//Send Saved MMS
-			elseif (strtolower($content_values['action'])=='sendsavedmms') {
-				$MAX_NUMBERS_IN_LIST=100;
+		//Send Saved MMS
+		elseif (strtolower($content_values['action'])=='sendsavedmms') {
+			$MAX_NUMBERS_IN_LIST=100;
         
-				if ($content_values['mmsid'] =="") {
-					return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
-				}
-        
-				if ($content_values['to'] =="") {
-					return $this->ReportXMLError("E621", "The 'to' is required", $content_values);
-				}
-        
-				if (count($content_values['to'])>$MAX_NUMBERS_IN_LIST) {
-					return $this->ReportXMLError("E623", "The 'to' field can contain up to ".$MAX_NUMBERS_IN_LIST." numbers", $content_values);
-				}
-        
-				if ($content_values['from'] =="") {
-					return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
-				}
+			if ($content_values['mmsid'] =="") {
+				return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
 			}
+        
+			if ($content_values['to'] =="") {
+				return $this->ReportXMLError("E621", "The 'to' is required", $content_values);
+			}
+        
+			if (count($content_values['to'])>$MAX_NUMBERS_IN_LIST) {
+				return $this->ReportXMLError("E623", "The 'to' field can contain up to ".$MAX_NUMBERS_IN_LIST." numbers", $content_values);
+			}
+        
+			if ($content_values['from'] =="") {
+				return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
+			}
+		}
 			
-			//Send Saved MMS Campaign
-			elseif (strtolower($content_values['action'])=='sendsavedmmscampaign') {
+		//Send Saved MMS Campaign
+		elseif (strtolower($content_values['action'])=='sendsavedmmscampaign') {
         
-				if ($content_values['mmsid'] =="") {
-					return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
-				}
-        
-				if ($content_values['tocampaign'] =="") {
-					return $this->ReportXMLError("E624", "The 'tocampaign' is required", $content_values);
-				}
+			if ($content_values['mmsid'] =="") {
+				return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
 			}
+        
+			if ($content_values['tocampaign'] =="") {
+				return $this->ReportXMLError("E624", "The 'tocampaign' is required", $content_values);
+			}
+		}
 			
-			//Send Saved Email
-			elseif (strtolower($content_values['action'])=='sendsavedemail') {
+		//Send Saved Email
+		elseif (strtolower($content_values['action'])=='sendsavedemail') {
         
-				if ($content_values['emailid'] =="") {
-					return $this->ReportXMLError("E402", "Invalid emailid", $content_values);
-				}
-        
-				if ($content_values['email'] =="") {
-					return $this->ReportXMLError("E401", "Invalid email", $content_values);
-				}
+			if ($content_values['emailid'] =="") {
+				return $this->ReportXMLError("E402", "Invalid emailid", $content_values);
 			}
+        
+			if ($content_values['email'] =="") {
+				return $this->ReportXMLError("E401", "Invalid email", $content_values);
+			}
+		}
 			
-			//Remove Inbox Content
-			elseif (strtolower($content_values['action'])=='removemmsinboxcontent') {
+		//Remove Inbox Content
+		elseif (strtolower($content_values['action'])=='removemmsinboxcontent') {
         
-				if ($content_values['mmsinboxid'] =="") {
-					return $this->ReportXMLError("E640", "The 'mmsinboxid' is required", $content_values);
-				}
+			if ($content_values['mmsinboxid'] =="") {
+				return $this->ReportXMLError("E640", "The 'mmsinboxid' is required", $content_values);
 			}
+		}
 			
 			//Subscribe/Unsubscribe
 			elseif (strtolower($content_values['action'])=='subscribe' || strtolower($content_values['action'])=='unsubscribe') {
