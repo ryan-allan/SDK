@@ -98,15 +98,15 @@ $skycoreResponse = $skycore->makeAPI_Call($request);
 print_r ($skycoreResponse);
 </pre>
 
-<strong>Display the status of the request (Failure/Success)</strong>
-<pre>
-echo $skycoreResponse->STATUS;
-</pre>
-
 <h4>How to display data from the response object:</h4>
 
 <strong>Basic Format:</strong>
 $skycoreResponse->DESIRED_INFO_TAG;
+
+<strong>Display the status of the request (Failure/Success)</strong>
+<pre>
+echo $skycoreResponse->STATUS;
+</pre>
 
 <strong>Example 1:</strong>
 For Error Information (If the status returns as 'Failure':
