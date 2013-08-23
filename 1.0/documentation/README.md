@@ -48,11 +48,11 @@ $request = array(
 <strong>Build Example Request 3:</strong>
 <pre>
 $duration1 = 'slide duration="' . $_GET["duration1"] .'"';
-$duration1 = 'slide duration="' . $_GET["duration2"] .'"';
+$duration2 = 'slide duration="' . $_GET["duration2"] .'"';
 
 $request = array(
 	'action' => 'saveMMS',
-	'subject' => 'testMMS2',
+	'subject' => 'testMMS',
 	'content' => array(
 		'name' => $_GET["name"],
 		'sequence' => array(
