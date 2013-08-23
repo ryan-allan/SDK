@@ -64,7 +64,9 @@ class Skycore	{
 				
 	//makeAPI_Call variables
 	//----------------------
-	private $currentXML_tag, 
+	private $requestStatus,
+		$requestVerification,
+		$currentXML_tag, 
 		$requestInfo, 
 		$XML_Request, 
 		$response,
