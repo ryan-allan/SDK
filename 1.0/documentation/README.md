@@ -4,7 +4,7 @@
 <h2>Skycore SDK v1.0 Documentation</h2>
 
 <strong>Synopsis:</strong>
-This SDK will allow for implementation of the Skycore API via instantiation of an object of the Skycore class and passing 
+This SDK will allow for the implementation of the Skycore API via instantiation of an object of the Skycore class and passing 
 an array containing the proper parameters to the makeAPI_Call function.  One can then assign the return value of this
 function to an object and access any of the data from the response via this object.
 
