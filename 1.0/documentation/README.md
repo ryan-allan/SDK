@@ -11,8 +11,6 @@ A current list of the calls and their parameters can be found <a href="https://g
 
 <pre>
 
-<?php
-
 include ('skycore_sdk.php');
 
 $key = "YOUR_API_KEY_HERE";
@@ -86,5 +84,5 @@ echo $skycoreResponse->STATUS;
 //echo $skycoreResponse->ERRORCODE;
 //echo $skycoreResponse->ERRORINFO;
 //echo $skycoreResponse->EMAILIDS;
-?>
+
 </pre>
