@@ -78,10 +78,10 @@ class Skycore	{
 	
 	//Constructor
 	//-----------
-	public function Skycore($key)	{
+	public function Skycore($key, $url)	{
 
 		$this->api_key = $key;
-		$this->baseURL = 'API_URL_HERE';
+		$this->baseURL = $url;
 	}
 	
 	//Function to handle Multidimensional Arrays
