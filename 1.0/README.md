@@ -4,5 +4,5 @@
 
 <a href="/1.0/source_code/skycore_sdk.php">View Source Code</a>
 <BR/>
-<a href="/1.0/documentation">View Documentation</a>
+<a href="/1.0/documentation/README.md">View Documentation</a>
 
