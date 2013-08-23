@@ -38,29 +38,29 @@ $request = array(
 */
 //-------saveMMS Test-------
 
-	$duration = 'slide duration="' . $_GET["duration"] .'"';
+$duration = 'slide duration="' . $_GET["duration"] .'"';
 
-	$request = array(
-		'action' => 'saveMMS',
-		'subject' => 'testMMS2',
-		'content' => array(
-			'name' => $_GET["name"],
-			'sequence' => array(
-				$duration => array(
-					'image' => array(
-						'url' => $_GET["url"]
-					),
-					'text' => 'Some Text'
+$request = array(
+	'action' => 'saveMMS',
+	'subject' => 'testMMS2',
+	'content' => array(
+		'name' => $_GET["name"],
+		'sequence' => array(
+			$duration => array(
+				'image' => array(
+					'url' => $_GET["url"]
 				),
-				'slide1' => array(
-					'image' => array(
-						'url' => $_GET["url"]
-					),
-					'text' => 'Some Text'
-				)
+				'text' => 'Some Text'
+			),
+			'slide1' => array(
+				'image' => array(
+					'url' => $_GET["url"]
+				),
+				'text' => 'Some Text'
 			)
 		)
-	);
+	)
+);
 
 
 //-------getEmailIds Test-------
