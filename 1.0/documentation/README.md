@@ -78,7 +78,7 @@ $request = array(
 );
 </pre>	
 
-<strong>Build a skycore object</strong>
+<strong>Build a Skycore Object</strong>
 <pre>
 $skycore = new Skycore($key);
 </pre>
@@ -88,7 +88,7 @@ $skycore = new Skycore($key);
 $skycoreResponse = $skycore->makeAPI_Call($request);
 </pre>
 
-<strong>Displaythe whole response</strong>
+<strong>Display the whole response</strong>
 <pre>
 print_r ($skycoreResponse);
 </pre>
