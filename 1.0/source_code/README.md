@@ -5,7 +5,7 @@
 <a href="/1.0/source_code/skycore_sdk.php">skycore_sdk.php</a> is the source code of the SDK.
 
 <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> is a small and 
-simple implementation of the SDK to help give new users a good idea of how the SDK works.  One will
+simple implementation of the SDK to help give new users a good idea of how the SDK works.  A user will
 need to add the API key and URL here:
 <pre>
 include ('skycore_sdk.php');
