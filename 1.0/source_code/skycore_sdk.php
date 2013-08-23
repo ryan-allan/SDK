@@ -259,7 +259,7 @@ class Skycore	{
 		
 	//Function to verify the request before sending
 	//---------------------------------------------
-	function verifyRequest ($content_values)	{
+	private function verifyRequest ($content_values)	{
 		
 		//Generic Field Requirements
 		if ($content_values['action']=="") {
@@ -600,7 +600,7 @@ class Skycore	{
 		
 	//Function to report any errors found by the verifyRequest function
 	//-----------------------------------------------------------------
-	function ReportXMLError($code, $description)	{
+	private function ReportXMLError($code, $description)	{
 			
 	   //Build the error response
 	   $Error_Response = "
