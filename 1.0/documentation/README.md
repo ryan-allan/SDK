@@ -103,15 +103,20 @@ print_r ($skycoreResponse);
 echo $skycoreResponse->STATUS;
 </pre>
 
-<strong>How to display data from the response object:</strong>
+<h4>How to display data from the response object:</h4>
 
+<strong>Basic Format:</strong>
+$skycoreResponse->DESIRED_INFO_TAG;
+
+<strong>Example 1:</strong>
 For Error Information (If the status returns as 'Failure':
 <pre>
 echo $skycoreResponse->ERRORCODE;
 echo $skycoreResponse->ERRORINFO;
 </pre>
 
-For a the above "get" request:
+<strong>Example 2:</strong>
+For the above "get" request:
 <pre>
 echo $skycoreResponse->EMAILIDS;
 </pre>
