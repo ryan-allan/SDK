@@ -15,7 +15,7 @@ include ('skycore_sdk.php');
 
 $key = "YOUR_API_KEY_HERE";
 
-//Example 1
+<strong>//Example 1</strong>
 $request = array(
 	'action'	 => 'subscribe',
 	'campaignid' => '1605',
@@ -23,7 +23,7 @@ $request = array(
 );
 
 
-//Example 2
+<strong>//Example 2</strong>
 $request = array(
 	'action' => 'sendPassInEmail',
 	'emailid' => '42876',
@@ -36,7 +36,7 @@ $request = array(
 );
 
 
-//Example 3
+<strong>//Example 3</strong>
 $duration = 'slide duration="' . $_GET["duration"] .'"';
 
 $request = array(
@@ -62,7 +62,7 @@ $request = array(
 );
 
 
-//Example 4
+<strong>//Example 4</strong>
 $request = array(
 	'action' => 'getemailids'
 );
