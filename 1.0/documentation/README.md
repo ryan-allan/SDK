@@ -36,7 +36,7 @@ $request = array(
 $request = array(
 	'action' => 'sendPassInEmail',
 	'emailid' => '42876',
-	'email' => 'ryan.allen@skycore.com',
+	'email' => '$_GET["email"]',
 	'campaignref' => '805',
 	'passdata' => array(
 		'barcodevalue' => '1234',
@@ -47,7 +47,8 @@ $request = array(
 
 <strong>Build Example Request 3:</strong>
 <pre>
-$duration = 'slide duration="' . $_GET["duration"] .'"';
+$duration1 = 'slide duration="' . $_GET["duration1"] .'"';
+$duration1 = 'slide duration="' . $_GET["duration2"] .'"';
 
 $request = array(
 	'action' => 'saveMMS',
@@ -55,15 +56,15 @@ $request = array(
 	'content' => array(
 		'name' => $_GET["name"],
 		'sequence' => array(
-			$duration => array(
+			$duration1 => array(
 				'image' => array(
-					'url' => $_GET["url"]
+					'url' => $_GET["url1"]
 				),
 				'text' => 'Some Text'
 			),
-			'slide1' => array(
+			$duration2 => array(
 				'image' => array(
-					'url' => $_GET["url"]
+					'url' => $_GET["url2"]
 				),
 				'text' => 'Some Text'
 			)
