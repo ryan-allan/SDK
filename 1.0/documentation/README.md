@@ -8,7 +8,7 @@ This SDK will allow for implementation of the Skycore API via instantiation of a
 an array containing the proper parameters to the makeAPI_Call function.  One can then assign the return value of this
 function to an object and access any of the data from the response via this object.
 
-A current list of the calls and their parameters can be found <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/API_METHODS.md">here</a> .
+A current list of the calls and their respective parameters/responses can be found <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/API_METHODS.md">here</a> .
 
 <h6>The following examples work in conjunction with the <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> file for optimal understanding of the SDK functionalities.</h6>
 
