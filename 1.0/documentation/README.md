@@ -11,7 +11,7 @@ A current list of the calls and their parameters can be found <a href="https://g
 
 <h2>Format Examples:</h2>
 
-<h3>The following examples help in conjunction with the <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> file for optimal understanding of the SDK functionalities</h3>
+<h5>The following examples help in conjunction with the <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> file for optimal understanding of the SDK functionalities</h5>
 
 
 <strong>Include the SDK and initialize your API Key and URL</strong>
