@@ -37,7 +37,6 @@ $request = array(
 
 
 //Example 3
-
 $duration = 'slide duration="' . $_GET["duration"] .'"';
 
 $request = array(
@@ -64,11 +63,10 @@ $request = array(
 
 
 //Example 4
-/*
-	$request = array(
-		'action' => 'getemailids'
-	);
-*/	
+$request = array(
+	'action' => 'getemailids'
+);
+	
 
 //Build a skycore object
 $skycore = new Skycore($key);
@@ -76,7 +74,7 @@ $skycore = new Skycore($key);
 //Send a request to the object and get it's response
 $skycoreResponse = $skycore->makeAPI_Call($request);
 
-//Show the whol response
+//Show the whole response
 //print_r ($skycoreResponse);
 
 //Access a piece of data in the response
