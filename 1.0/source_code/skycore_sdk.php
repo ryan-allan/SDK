@@ -42,21 +42,21 @@ class Skycore	{
 	//Skycore constructor variables
 	//-----------------------------
 	private $api_key,
-		$baseURL;
+			$baseURL;
 			
 	//innerArrayCheck variables
 	//-------------------------
 	private $innerXML_tag,
-		$innerRequestInfo,
-		$innerArrayData,
-		$innerArrayCount,
-		$buildTag,
-		$buildTag2,
-		$currentChar,
-		$currentChar2,
-		$counter2,
-		$counter3,
-		$counter4;
+			$innerRequestInfo,
+			$innerArrayData,
+			$innerArrayCount,
+			$buildTag,
+			$buildTag2,
+			$currentChar,
+			$currentChar2,
+			$counter2,
+			$counter3,
+			$counter4;
 				
 	//innerArrayCheck arrays
 	//----------------------
@@ -66,15 +66,15 @@ class Skycore	{
 	//makeAPI_Call variables
 	//----------------------
 	private $requestStatus,
-		$requestVerification,
-		$currentXML_tag, 
-		$requestInfo, 
-		$XML_Request, 
-		$response,
-		$counter1;
-				
+			$requestVerification,
+			$currentXML_tag, 
+			$requestInfo, 
+			$XML_Request, 
+			$response,
+			$counter1;
+					
 	private $array_tag, 
-		$XML_RequestArray = array();
+			$XML_RequestArray = array();
 				
 	
 	//Constructor

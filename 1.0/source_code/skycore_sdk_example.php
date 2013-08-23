@@ -1,24 +1,46 @@
-
-
+------------------------------------------------------------------------------------------------------<BR/>
 <form action="skycore_sdk_example.php" method="get">
 
-Your number must be of the format 1-XXX-XXX-XXXX (excluding hyphens):<input type="text" name="mobile">
-							  Enter Name:<input type="text" name="name">
-							  Enter Duration:<input type="text" name="duration">
-							  Enter Image URL:<input type="text" name="url">
+Enter your phone number:<input type="text" name="mobile"><BR/>
+Format: 1-XXX-XXX-XXXX (excluding hyphens)<BR/>
 							  
-<input type="submit" name="submit" value="Submit">
+<input type="submit" name="submit" value="Subscribe">
 
 </form>
+------------------------------------------------------------------------------------------------------<BR/>
+<form action="skycore_sdk_example.php" method="get">
+
+Enter your Email:<input type="text" name="email"><BR/>
+Format: example@example.com<BR/>
+							  
+<input type="submit" name="submit" value="Send Pass To Email">
+
+</form>
+------------------------------------------------------------------------------------------------------<BR/>
+<form action="skycore_sdk_example.php" method="get">
+
+Enter Name of the MMS:<input type="text" name="name"><BR/>
+<strong>Slide 1 Information:</strong><BR/>
+Enter Duration:<input type="text" name="duration1"><BR/>
+Enter Image URL:<input type="text" name="url1"><BR/>
+<strong>Slide 2 Information:</strong><BR/>
+Enter Duration:<input type="text" name="duration2"><BR/>
+Enter Image URL:<input type="text" name="url2"><BR/>
+							  
+<input type="submit" name="submit" value="Save MMS">
+
+</form>
+------------------------------------------------------------------------------------------------------<BR/>
 
 <?php
 
-include ('skycore_sdk.php');	//
-//-------Dev Key-------
+include ('skycore_sdk.php');
+	
+//-------API ACCESS INFO-------
 $key = "YOUR_API_KEY_HERE";
 $url = 'API_URL_HERE';
 
-//-------Simple Test-------
+//-------Subscribe-------
 
 /*
 $request = array(
@@ -28,12 +50,12 @@ $request = array(
 );
 */
 
-//-------Multidimensional Test-------
+//-------Send Pass In Email-------
 /*
 $request = array(
 	'action' => 'sendPassInEmail',
 	'emailid' => '42876',
-	'email' => 'ryan.allen@skycore.com',
+	'email' => $_GET["email"],
 	'campaignref' => '805',
 	'passdata' => array(
 		'barcodevalue' => '1234',
@@ -42,34 +64,36 @@ $request = array(
 );
 
 */
-//-------saveMMS Test-------
 
-$duration = 'slide duration="' . $_GET["duration"] .'"';
+//-------Save MMS-------
+/*
+$durationSlide1 = 'slide duration="' . $_GET["duration1"] .'"';
+$durationSlide2 = 'slide duration="' . $_GET["duration2"] .'"';
 
 $request = array(
 	'action' => 'saveMMS',
-	'subject' => 'testMMS2',
+	'subject' => 'testMMS',
 	'content' => array(
 		'name' => $_GET["name"],
 		'sequence' => array(
-			$duration => array(
+			$durationSlide1 => array(
 				'image' => array(
-					'url' => $_GET["url"]
+					'url' => $_GET["url1"]
 				),
-				'text' => 'Some Text'
+				'text' => $_GET["text1"]
 			),
-			'slide1' => array(
+			$durationSlide2 => array(
 				'image' => array(
-					'url' => $_GET["url"]
+					'url' => $_GET["url2"]
 				),
-				'text' => 'Some Text'
+				'text' => $_GET["text2"]
 			)
 		)
 	)
 );
+*/
 
-
-//-------getEmailIds Test-------
+//-------Get Email ID's-------
 /*
 	$request = array(
 		'action' => 'getemailids'
@@ -82,13 +106,19 @@ $skycore = new Skycore($key, $url);
 //Send a request to the object and get it's response
 $skycoreResponse = $skycore->makeAPI_Call($request);
 
-//Show the whol response
+//Print out the whole response
 //print_r ($skycoreResponse);
 
 //Access a piece of data in the response
-echo $skycoreResponse->STATUS;
+
+//----Retrieve the status of the response
+//echo $skycoreResponse->STATUS;
+
+//----Retrieve Error Info if the status returns as "Failure"
 //echo $skycoreResponse->ERRORCODE;
 //echo $skycoreResponse->ERRORINFO;
+
+//----Retrive the Email ID's----
 //echo $skycoreResponse->EMAILIDS;
 
 ?>
