@@ -253,7 +253,7 @@ class Skycore	{
 		//Convert response to simple XML object
 		$XML_Response = simplexml_load_string($response);
 			
-		//Call for Response Check
+		//Return the response
 		return $XML_Response;
 	}
 		
