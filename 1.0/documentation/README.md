@@ -6,24 +6,29 @@ of this function to an object and access any of the data from the response via t
 
 A current list of the calls and their parameters can be found <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/API_METHODS.md">here</a> .
 
-<strong>Format Example:</strong>
+<strong>Format Examples:</strong>
 
 
+
+
+<strong>Include the SDK and initialize your API Key</strong>
 <pre>
-
 include ('skycore_sdk.php');
 
 $key = "YOUR_API_KEY_HERE";
+</pre>
 
-<strong>//Example 1</strong>
+<strong>Build Example Request 1:</strong>
+<pre>
 $request = array(
 	'action'	 => 'subscribe',
 	'campaignid' => '1605',
 	'mobile'     => $_GET["mobile"]
 );
+</pre>
 
-
-<strong>//Example 2</strong>
+<strong>Build Example Request 2:</strong>
+<pre>
 $request = array(
 	'action' => 'sendPassInEmail',
 	'emailid' => '42876',
@@ -34,9 +39,10 @@ $request = array(
 		'barcodetext' => '5678'
 	)
 );
+</pre>
 
-
-<strong>//Example 3</strong>
+<strong>Build Example Request 3:</strong>
+<pre>
 $duration = 'slide duration="' . $_GET["duration"] .'"';
 
 $request = array(
@@ -60,27 +66,33 @@ $request = array(
 		)
 	)
 );
+</pre>
 
-
-<strong>//Example 4</strong>
+<strong>Build Example Request 4:</strong>
+<pre>
 $request = array(
 	'action' => 'getemailids'
 );
-	
+</pre>	
 
-//Build a skycore object
+<strong>Build a skycore object</strong>
+<pre>
 $skycore = new Skycore($key);
+</pre>
 
-//Send a request to the object and get it's response
+<strong>Send a request to the object and get it's response</strong>
+<pre>
 $skycoreResponse = $skycore->makeAPI_Call($request);
+</pre>
 
-//Show the whole response
-//print_r ($skycoreResponse);
+<strong>Show the whole response</strong>
+<pre>
+print_r ($skycoreResponse);
+</pre>
 
-//Access a piece of data in the response
+<strong>Access a piece of data in the response</strong>
+<pre>
 echo $skycoreResponse->STATUS;
-//echo $skycoreResponse->ERRORCODE;
-//echo $skycoreResponse->ERRORINFO;
-//echo $skycoreResponse->EMAILIDS;
-
+echo $skycoreResponse->ERRORCODE;
+echo $skycoreResponse->ERRORINFO;
 </pre>
