@@ -116,7 +116,7 @@ echo $skycoreResponse->ERRORINFO;
 </pre>
 
 <strong>Example 2:</strong>
-For the above "get" request:
+For the 'Example 4' "get" request:
 <pre>
 echo $skycoreResponse->EMAILIDS;
 </pre>
