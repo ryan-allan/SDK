@@ -81,7 +81,7 @@ class Skycore	{
 	public function Skycore($key)	{
 
 		$this->api_key = $key;
-		$this->baseURL = 'https://dev-secure.skycore.com/API/wxml/1.3/index.php?';
+		$this->baseURL = 'API_URL_HERE';
 	}
 	
 	//Function to handle Multidimensional Arrays
