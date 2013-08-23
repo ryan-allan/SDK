@@ -1,14 +1,19 @@
+
+
 <form action="skycore_sdk_example.php" method="get">
-Your number must be of the format 1-XXX-XXX-XXXX (excluding hyphens) :<input type="text" name="mobile">
-Enter Name:<input type="text" name="name">
-Enter Duration:<input type="text" name="duration">
-Enter Image URL :<input type="text" name="url">
+
+Your number must be of the format 1-XXX-XXX-XXXX (excluding hyphens):<input type="text" name="mobile">
+							  Enter Name:<input type="text" name="name">
+							  Enter Duration:<input type="text" name="duration">
+							  Enter Image URL:<input type="text" name="url">
+							  
 <input type="submit" name="submit" value="Submit">
+
 </form>
 
 <?php
 
-include ('skycore_sdk.php');
+include ('skycore_sdk.php');	//
 //-------Dev Key-------
 $key = "YOUR_API_KEY_HERE";
 $url = 'API_URL_HERE';
