@@ -88,12 +88,12 @@ $skycore = new Skycore($key);
 $skycoreResponse = $skycore->makeAPI_Call($request);
 </pre>
 
-<strong>Show the whole response</strong>
+<strong>Displaythe whole response</strong>
 <pre>
 print_r ($skycoreResponse);
 </pre>
 
-<strong>Access a piece of data in the response</strong>
+<strong>Display a piece of data in the response</strong>
 <pre>
 echo $skycoreResponse->STATUS;
 echo $skycoreResponse->ERRORCODE;
