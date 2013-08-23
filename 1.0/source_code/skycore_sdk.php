@@ -397,223 +397,223 @@ class Skycore	{
 			}
 		}
 			
-			//Subscribe/Unsubscribe
-			elseif (strtolower($content_values['action'])=='subscribe' || strtolower($content_values['action'])=='unsubscribe') {
+		//Subscribe/Unsubscribe
+		elseif (strtolower($content_values['action'])=='subscribe' || strtolower($content_values['action'])=='unsubscribe') {
         
-				if ($content_values['mobile']=="") {
-					return $this->ReportXMLError("E901", "The 'mobile' number is required", $content_values);
-				}
-        
-				if ($content_values['campaignid']=="") {
-					return $this->ReportXMLError("E902", "The 'campaignid' is required", $content_values);
-				}
+			if ($content_values['mobile']=="") {
+				return $this->ReportXMLError("E901", "The 'mobile' number is required", $content_values);
 			}
+        
+			if ($content_values['campaignid']=="") {
+				return $this->ReportXMLError("E902", "The 'campaignid' is required", $content_values);
+			}
+		}
 			
-			//Email subscribe/unsubscribe
-			elseif (strtolower($content_values['action'])=='subscribeemail' || strtolower($content_values['action'])=='unsubscribeemail') {
+		//Email subscribe/unsubscribe
+		elseif (strtolower($content_values['action'])=='subscribeemail' || strtolower($content_values['action'])=='unsubscribeemail') {
         
-				if ($content_values['email']=="") {
-					return $this->ReportXMLError("E911", "The 'email' is required", $content_values);
-				}
-        
-				if ($content_values['campaignid']=="") {
-					return $this->ReportXMLError("E912", "Invalid campaignid", $content_values);
-				}
+			if ($content_values['email']=="") {
+				return $this->ReportXMLError("E911", "The 'email' is required", $content_values);
 			}
+        
+			if ($content_values['campaignid']=="") {
+				return $this->ReportXMLError("E912", "Invalid campaignid", $content_values);
+			}
+		}
 			
-			//Create User
-			elseif (strtolower($content_values['action'])=='createuser') {
+		//Create User
+		elseif (strtolower($content_values['action'])=='createuser') {
         
-				if ( $content_values['newuser'] == "") {
-					return $this->ReportXMLError ( "E150", "The 'newuser' is required", $content_values );
-				}
-        
-				if ( $content_values['newpass'] == "") {
-					return $this->ReportXMLError ( "E152", "The 'newpass' is required", $content_values );
-				}
+			if ( $content_values['newuser'] == "") {
+				return $this->ReportXMLError ( "E150", "The 'newuser' is required", $content_values );
 			}
+        
+			if ( $content_values['newpass'] == "") {
+				return $this->ReportXMLError ( "E152", "The 'newpass' is required", $content_values );
+			}
+		}
 			
-			//Create MMS Campaign
-			elseif (strtolower($content_values['action'])=='createmmscampaign') {
+		//Create MMS Campaign
+		elseif (strtolower($content_values['action'])=='createmmscampaign') {
         
-				if ( $content_values['campaignname'] == "" ) {
-					return $this->ReportXMLError ( "E170", "'campaignname' is required.", $content_values );
-				}
-        
-				if ( $content_values['brandname'] == "" ) {
-					return $this->ReportXMLError ( "E171", "'brandname' is required.", $content_values );
-				}
+			if ( $content_values['campaignname'] == "" ) {
+				return $this->ReportXMLError ( "E170", "'campaignname' is required.", $content_values );
 			}
+        
+			if ( $content_values['brandname'] == "" ) {
+				return $this->ReportXMLError ( "E171", "'brandname' is required.", $content_values );
+			}
+		}
 			
-			//Create Email Campaign
-			elseif (strtolower($content_values['action'])=='createemailcampaign') {
+		//Create Email Campaign
+		elseif (strtolower($content_values['action'])=='createemailcampaign') {
         
-				if ( $content_values['campaignname'] == "" ) {
-					return $this->ReportXMLError ( "E170", "'campaignname' is required.", $content_values );
-				}
-        
-				if ( $content_values['brandname'] == "" ) {
-					return $this->ReportXMLError ( "E171", "'brandname' is required.", $content_values );
-				}
-        
-				if ( $content_values['mailingaddress'] == "" ) {
-					return $this->ReportXMLError ( "E173", "'mailingaddress' is required.", $content_values );
-				}
+			if ( $content_values['campaignname'] == "" ) {
+				return $this->ReportXMLError ( "E170", "'campaignname' is required.", $content_values );
 			}
+        
+			if ( $content_values['brandname'] == "" ) {
+				return $this->ReportXMLError ( "E171", "'brandname' is required.", $content_values );
+			}
+        
+			if ( $content_values['mailingaddress'] == "" ) {
+				return $this->ReportXMLError ( "E173", "'mailingaddress' is required.", $content_values );
+			}
+		}
 			
-			//Send MMS Barcode
-			elseif (strtolower($content_values['action'])=='sendmmsbarcode') {
+		//Send MMS Barcode
+		elseif (strtolower($content_values['action'])=='sendmmsbarcode') {
         
-				if ($content_values['mmsid'] =="") {
-					return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
-				}
-        
-				if ($content_values['to'] =="") {
-					return $this->ReportXMLError("E621", "The 'to' is required", $content_values);
-				}
-        
-				if ($content_values['to']['barcodeid'] =="") {
-					return $this->ReportXMLError("E631", "The 'barcodeid' is required", $content_values);
-				}
-        
-				if ($content_values['to']['from'] =="") {
-					return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
-				}
+        		if ($content_values['mmsid'] =="") {
+				return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
 			}
+        
+			if ($content_values['to'] =="") {
+				return $this->ReportXMLError("E621", "The 'to' is required", $content_values);
+			}
+        
+			if ($content_values['to']['barcodeid'] =="") {
+				return $this->ReportXMLError("E631", "The 'barcodeid' is required", $content_values);
+			}
+        
+			if ($content_values['to']['from'] =="") {
+				return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
+			}
+		}
 			
-			//Add Pass Data
-			elseif (strtolower($content_values['action'])=='addpassdata') {
+		//Add Pass Data
+		elseif (strtolower($content_values['action'])=='addpassdata') {
         
-				if ( empty ( $content_values ['passtemplateid'] ) ) {
-					return $this->ReportXMLError ( "E801", "The PassTemplateID is required", $content_values );
-				}
+			if ( empty ( $content_values ['passtemplateid'] ) ) {
+				return $this->ReportXMLError ( "E801", "The PassTemplateID is required", $content_values );
 			}
+		}
 			
-			//Update Pass Data - *This will also update the pass*
-			elseif (strtolower($content_values['action'])=='updatepass') {
+		//Update Pass Data - *This will also update the pass*
+		elseif (strtolower($content_values['action'])=='updatepass') {
         
-				if ( empty ( $content_values ['passdataid'] ) ) {
-					return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
-				}
+			if ( empty ( $content_values ['passdataid'] ) ) {
+				return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
 			}
+		}
 			
-			//Delete Pass Data
-			elseif (strtolower($content_values['action'])=='deletepassdata') {
+		//Delete Pass Data
+		elseif (strtolower($content_values['action'])=='deletepassdata') {
         
-				if ( empty ( $content_values ['passdataid'] ) ) {
-					return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
-				}
+			if ( empty ( $content_values ['passdataid'] ) ) {
+				return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
 			}
+		}
 			
-			//Send Pass in MMS
-			elseif (strtolower($content_values['action'])=='sendpassinmms') {
+		//Send Pass in MMS
+		elseif (strtolower($content_values['action'])=='sendpassinmms') {
         
-				if ($content_values['mmsid'] =="") {
-					return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
-				}
+			if ($content_values['mmsid'] =="") {
+				return $this->ReportXMLError("E620", "The 'mmsid' is required", $content_values);
+			}
         
-				if ($content_values['to'] =="") {
-					return $this->ReportXMLError("E621", "The 'to' is required", $content_values);
-				}
+			if ($content_values['to'] =="") {
+				return $this->ReportXMLError("E621", "The 'to' is required", $content_values);
+			}
         
-				if ($content_values['from'] =="") {
-					return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
-				}
-        
+			if ($content_values['from'] =="") {
+				return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
 			}
-			
-			//Send Pass in Email
-			elseif (strtolower($content_values['action'])=='sendpassinemail') {
-        
-				if ($content_values['emailid'] =="") {
-					return  $this->ReportXMLError("E402", "Invalid emailid", $content_values);
-				}
-        
-				if ($content_values['email'] =="") {
-					return $this->ReportXMLError("E401", "Invalid email", $content_values);
-				}
-        
-				if ($content_values['campaignref'] == "" ) {
-					return $this->ReportXMLError("E714", "Missing/Invalid CampaignID", $content_values );
-				}
-        
-			}
-			
-			//Generate Pass by Pass Data ID
-			elseif (strtolower($content_values['action'])=='generatepassbyid') {
-    
-				if ( empty ( $content_values ['passdataid'] ) ) {
-					return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
-				}
-			}
-			
-			//Generate Pass 
-			elseif (strtolower($content_values['action'])=='generatepass') {
-    
-				if ( empty ( $content_values ['passtemplateid'] ) ) {
-					return $this->ReportXMLError ( "E801", "The PassTemplateID is required", $content_values );
-				}
-			}
-			
-			//Get Pass Template
-			elseif (strtolower($content_values['action'])=='getpasstemplate') {
-        
-				if ( empty ( $content_values['mmsid'] ) && empty ( $content_values['emailid'] ) && empty ( $content_values['passtemplateid'] ) ) {
-					return $this->ReportXMLError("E827", "Invalid request. MmsID or emailID or passTemplateID is required.", $content_values);
-				}
-			}
-			//---------------------------Empty Conditionals------------------------------
-			//Login User
-			elseif (strtolower($content_values['action'])=='loginuser')	{
-				//Nothing Needed Here
-			}
-			
-			//Get MMS ID's
-			elseif(strtolower($content_values['action'])=='getmmsids')	{
-				//Nothing Needed Here
-			}
-			
-			//Get Email ID's
-			elseif(strtolower($content_values['action'])=='getemailids')	{
-				//Nothing Needed Here
-			}
-			
-			//Get Email Campaigns
-			elseif(strtolower($content_values['action'])=='getemailcampaigns')	{
-				//Nothing Needed Here
-			}
-			
-			//Get Pass Template ID's
-			elseif(strtolower($content_values['action'])=='getpasstemplateids')	{
-				//Nothing Needed Here
-			}
-			//---------------------------End Empty Conditionals------------------------------
-			else {
-				return $this->ReportXMLError("E101", "'action' required/Invalid Action");
-			}
-			
+       
 		}
 		
-		//Function to report any errors found by the verifyRequest function
-		//-----------------------------------------------------------------
-		function ReportXMLError($code, $description)	{
-			
-			//Build the error response
-			   $Error_Response = "
-				<RESPONSE>
-				<STATUS>Failure</STATUS>
-				<ERRORCODE>".$code."</ERRORCODE>
-			    	<ERRORINFO>".$description."</ERRORINFO>
-				</RESPONSE>";
-
-			//Convert response to simple XML object
-			$XML_Response = simplexml_load_string($Error_Response);
-			
-			//return the response
-			return $XML_Response;
-
+		//Send Pass in Email
+		elseif (strtolower($content_values['action'])=='sendpassinemail') {
+        
+			if ($content_values['emailid'] =="") {
+				return  $this->ReportXMLError("E402", "Invalid emailid", $content_values);
+			}
+        
+			if ($content_values['email'] =="") {
+				return $this->ReportXMLError("E401", "Invalid email", $content_values);
+			}
+        
+			if ($content_values['campaignref'] == "" ) {
+				return $this->ReportXMLError("E714", "Missing/Invalid CampaignID", $content_values );
+			}
+       
 		}
+			
+		//Generate Pass by Pass Data ID
+		elseif (strtolower($content_values['action'])=='generatepassbyid') {
+    
+			if ( empty ( $content_values ['passdataid'] ) ) {
+				return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
+			}
+		}
+			
+		//Generate Pass 
+		elseif (strtolower($content_values['action'])=='generatepass') {
+    
+			if ( empty ( $content_values ['passtemplateid'] ) ) {
+				return $this->ReportXMLError ( "E801", "The PassTemplateID is required", $content_values );
+			}
+		}
+			
+		//Get Pass Template
+		elseif (strtolower($content_values['action'])=='getpasstemplate') {
+        
+			if ( empty ( $content_values['mmsid'] ) && empty ( $content_values['emailid'] ) && empty ( $content_values['passtemplateid'] ) ) {
+				return $this->ReportXMLError("E827", "Invalid request. MmsID or emailID or passTemplateID is required.", $content_values);
+			}
+		}
+		//---------------------------Empty Conditionals------------------------------
+		//Login User
+		elseif (strtolower($content_values['action'])=='loginuser')	{
+			//Nothing Needed Here
+		}
+		
+		//Get MMS ID's
+		elseif(strtolower($content_values['action'])=='getmmsids')	{
+			//Nothing Needed Here
+		}
+			
+		//Get Email ID's
+		elseif(strtolower($content_values['action'])=='getemailids')	{
+			//Nothing Needed Here
+		}
+			
+		//Get Email Campaigns
+		elseif(strtolower($content_values['action'])=='getemailcampaigns')	{
+			//Nothing Needed Here
+		}
+			
+		//Get Pass Template ID's
+		elseif(strtolower($content_values['action'])=='getpasstemplateids')	{
+			//Nothing Needed Here
+		}
+		//---------------------------End Empty Conditionals------------------------------
+		else {
+			return $this->ReportXMLError("E101", "'action' required/Invalid Action");
+		}
+			
+	}
+		
+	//Function to report any errors found by the verifyRequest function
+	//-----------------------------------------------------------------
+	function ReportXMLError($code, $description)	{
+			
+	   //Build the error response
+	   $Error_Response = "
+		<RESPONSE>
+		<STATUS>Failure</STATUS>
+		<ERRORCODE>".$code."</ERRORCODE>
+		<ERRORINFO>".$description."</ERRORINFO>
+		</RESPONSE>";
+
+		//Convert response to simple XML object
+		$XML_Response = simplexml_load_string($Error_Response);
+			
+		//return the response
+		return $XML_Response;
 
 	}
+
+}
 	
 ?>
