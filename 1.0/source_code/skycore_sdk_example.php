@@ -1,4 +1,4 @@
-<form action="testcore.php" method="get">
+<form action="skycore_sdk_example.php" method="get">
 Your number must be of the format 1-XXX-XXX-XXXX (excluding hyphens) :<input type="text" name="mobile">
 Enter Name:<input type="text" name="name">
 Enter Duration:<input type="text" name="duration">
