@@ -14,7 +14,7 @@ A current list of the calls and their parameters can be found <a href="https://g
 
 <h3>Format Examples:</h3>
 
-<strong>Include the SDK and initialize your API Key and URL</strong>
+<strong>Include the SDK and initialize your API Key and URL:</strong>
 <pre>
 include ('skycore_sdk.php');
 
