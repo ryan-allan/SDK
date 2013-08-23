@@ -105,14 +105,14 @@ echo $skycoreResponse->STATUS;
 
 <strong>How to display data from the response object:</strong>
 
-<strong>For Error Information (If the status returns as 'Failure':</strong>
+<h6>For Error Information (If the status returns as 'Failure':</h6>
 
 <pre>
 echo $skycoreResponse->ERRORCODE;
 echo $skycoreResponse->ERRORINFO;
 </pre>
 
-<strong>For a "get" request:</strong>
+<h6>For a "get" request:</h6>
 <pre>
 echo $skycoreResponse->EMAILIDS;
 </pre>
