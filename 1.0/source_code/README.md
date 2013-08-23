@@ -9,7 +9,7 @@ simple implementation of the SDK to help give new users a good idea of how the S
 need to add the API key and URL here:
 <pre>
 include ('skycore_sdk.php');
-//-------Dev Key-------
+//-------API ACCESS INFO-------
 $key = "<strong>YOUR_API_KEY_HERE</strong>";
 $url = '<strong>API_URL_HERE</strong>';
 </pre>
