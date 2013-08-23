@@ -6,7 +6,7 @@ One will need to add the API URL to the SDK here:
 	public function Skycore($key)	{
 
 		$this->api_key = $key;
-		$this->baseURL = 'API_URL_HERE';
+		$this->baseURL = '<strong>API_URL_HERE</strong>';
 	}
 </pre>
 
@@ -15,5 +15,5 @@ One will need to add the API key here:
 <pre>
 include ('skycore_sdk.php');
 //-------Dev Key-------
-$key = "YOUR_API_KEY_HERE";
+$key = "<strong>YOUR_API_KEY_HERE</strong>";
 </pre>
