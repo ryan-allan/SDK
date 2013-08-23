@@ -14,11 +14,12 @@ A current list of the calls and their parameters can be found <a href="https://g
 
 
 
-<strong>Include the SDK and initialize your API Key</strong>
+<strong>Include the SDK and initialize your API Key and URL</strong>
 <pre>
 include ('skycore_sdk.php');
 
 $key = "<strong>YOUR_API_KEY_HERE</strong>";
+$url = '<strong>API_URL_HERE</strong>'
 </pre>
 
 <strong>Build Example Request 1:</strong>
