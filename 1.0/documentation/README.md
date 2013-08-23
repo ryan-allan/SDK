@@ -6,17 +6,18 @@ of this function to an object and access any of the data from the response via t
 
 A current list of the calls and their parameters can be found <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/API_METHODS.md">here</a> .
 
-<strong>Format Examples:</strong>
+<strong>Format Example:</strong>
 
 
 <pre>
 
 <?php
+
 include ('skycore_sdk.php');
-//-------Dev Key-------
+
 $key = "YOUR_API_KEY_HERE";
 
-//-------Simple Test-------
+//Example 1
 
 /*
 $request = array(
