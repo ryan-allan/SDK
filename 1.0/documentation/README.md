@@ -99,7 +99,7 @@ print_r ($skycoreResponse);
 echo $skycoreResponse->STATUS;
 </pre>
 
-<strong>How to display error data (or any data) if the response returned Failure</strong>
+<strong>How to display error data (or any data)</strong>
 <pre>
 echo $skycoreResponse->ERRORCODE;
 echo $skycoreResponse->ERRORINFO;
