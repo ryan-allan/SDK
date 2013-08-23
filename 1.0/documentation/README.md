@@ -7,20 +7,57 @@ function to an object and access any of the data from the response via this obje
 A current list of the calls and their parameters can be found <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/API_METHODS.md">here</a> .
 -----------------------------------------------------------------------------------------------------------------------	
 <strong>Format Examples:</strong>
+-----------------------------------------------------------------------------------------------------------------------
 
-
-
+<pre>
+<?php
+include ('skycore_sdk.php');
+//-------Dev Key-------
 $key = "YOUR_API_KEY_HERE";
-	
+
+//-------Simple Test-------
+
+/*
+$request = array(
+	'action'	 => 'subscribe',
+	'campaignid' => '1605',
+	'mobile'     => $_GET["mobile"]
+);
+*/
+
+//-------Multidimensional Test-------
+/*
+$request = array(
+	'action' => 'sendPassInEmail',
+	'emailid' => '42876',
+	'email' => 'ryan.allen@skycore.com',
+	'campaignref' => '805',
+	'passdata' => array(
+		'barcodevalue' => '1234',
+		'barcodetext' => '5678'
+	)
+);
+
+*/
+//-------saveMMS Test-------
+
+$duration = 'slide duration="' . $_GET["duration"] .'"';
+
 $request = array(
 	'action' => 'saveMMS',
-	'subject' => 'testMMS',
+	'subject' => 'testMMS2',
 	'content' => array(
-		'name' => 'testMMS',
+		'name' => $_GET["name"],
 		'sequence' => array(
-			'slide duration="10"' => array(
+			$duration => array(
 				'image' => array(
-					'url' => 'example.com'
+					'url' => $_GET["url"]
+				),
+				'text' => 'Some Text'
+			),
+			'slide1' => array(
+				'image' => array(
+					'url' => $_GET["url"]
 				),
 				'text' => 'Some Text'
 			)
@@ -28,8 +65,27 @@ $request = array(
 	)
 );
 
+
+//-------getEmailIds Test-------
+/*
+	$request = array(
+		'action' => 'getemailids'
+	);
+*/	
+
+//Build a skycore object
 $skycore = new Skycore($key);
+
+//Send a request to the object and get it's response
 $skycoreResponse = $skycore->makeAPI_Call($request);
+
+//Show the whol response
+//print_r ($skycoreResponse);
+
+//Access a piece of data in the response
 echo $skycoreResponse->STATUS;
---------------------------------------------------
-	-----------------------------------------
+//echo $skycoreResponse->ERRORCODE;
+//echo $skycoreResponse->ERRORINFO;
+//echo $skycoreResponse->EMAILIDS;
+?>
+</pre>
