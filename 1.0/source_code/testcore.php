@@ -10,7 +10,7 @@ Enter Image URL :<input type="text" name="url">
 
 include ('skycore_sdk.php');
 //-------Dev Key-------
-$key = "KvP46UOdREGTOWNRvEHUE8cc9I2v1SuL";
+$key = "YOUR_API_KEY_HERE";
 
 //-------Simple Test-------
 
