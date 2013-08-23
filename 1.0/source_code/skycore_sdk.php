@@ -42,7 +42,7 @@ class Skycore	{
 	//Skycore constructor variables
 	//-----------------------------
 	private $api_key,
-			$baseURL;
+		$baseURL;
 			
 	//innerArrayCheck variables
 	//-------------------------
