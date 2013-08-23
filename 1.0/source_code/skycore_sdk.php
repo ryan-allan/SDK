@@ -12,6 +12,7 @@ A current list of the calls and their parameters can be found here at https://gi
 Format Example:
 --------------------------------------------------
 $key = "YOUR_API_KEY_HERE";
+$url = 'API_URL_HERE';
 	
 $request = array(
 	'action' => 'saveMMS',
@@ -29,7 +30,7 @@ $request = array(
 	)
 );
 
-$skycore = new Skycore($key);
+$skycore = new Skycore($key, $url);
 $skycoreResponse = $skycore->makeAPI_Call($request);
 echo $skycoreResponse->STATUS;
 --------------------------------------------------
