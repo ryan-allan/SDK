@@ -103,7 +103,7 @@ print_r ($skycoreResponse);
 echo $skycoreResponse->STATUS;
 </pre>
 
-<h6>How to display data from the response object:</h6>
+<strong>How to display data from the response object:</strong>
 
 <strong>For Error Information (If the status returns as 'Failure':</strong>
 
