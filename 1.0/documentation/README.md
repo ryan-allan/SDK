@@ -18,17 +18,14 @@ include ('skycore_sdk.php');
 $key = "YOUR_API_KEY_HERE";
 
 //Example 1
-
-/*
 $request = array(
 	'action'	 => 'subscribe',
 	'campaignid' => '1605',
 	'mobile'     => $_GET["mobile"]
 );
-*/
 
-//-------Multidimensional Test-------
-/*
+
+//Example 2
 $request = array(
 	'action' => 'sendPassInEmail',
 	'emailid' => '42876',
@@ -40,8 +37,8 @@ $request = array(
 	)
 );
 
-*/
-//-------saveMMS Test-------
+
+//Example 3
 
 $duration = 'slide duration="' . $_GET["duration"] .'"';
 
@@ -68,7 +65,7 @@ $request = array(
 );
 
 
-//-------getEmailIds Test-------
+//Example 4
 /*
 	$request = array(
 		'action' => 'getemailids'
