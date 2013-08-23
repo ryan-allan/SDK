@@ -73,8 +73,10 @@ $request = array(
 );
 </pre>
 
-<strong>Build Example Request 4:</strong>
-Note: Any "get" requests will return the desired information in the response object.
+<strong>Build Example Request 4:</strong><BR/>
+
+<strong>Note:</strong> Any "get" requests will return the desired information in the response object.
+
 <pre>
 $request = array(
 	'action' => 'getemailids'
@@ -102,7 +104,15 @@ echo $skycoreResponse->STATUS;
 </pre>
 
 <strong>How to display error data (or any data)</strong>
+
+<strong>For Error Information (If the status returns as 'Failure':</strong>
+
 <pre>
 echo $skycoreResponse->ERRORCODE;
 echo $skycoreResponse->ERRORINFO;
+</pre>
+
+<strong>For a "get" request:</strong>
+<pre>
+echo $skycoreResponse->EMAILIDS;
 </pre>
