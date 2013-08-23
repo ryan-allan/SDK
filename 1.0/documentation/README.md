@@ -12,7 +12,7 @@ A current list of the calls and their parameters can be found <a href="https://g
 
 <h6>The following examples work in conjunction with the <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> file for optimal understanding of the SDK functionalities</h6>
 
-<h2>Format Examples:</h2>
+<h3>Format Examples:</h3>
 
 <strong>Include the SDK and initialize your API Key and URL</strong>
 <pre>
