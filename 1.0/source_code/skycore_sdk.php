@@ -1,170 +1,172 @@
 <?php
 
-	/*
-	Skycore SDK v1.0
-	This SDK will allow for implementation of the Skycore API via instantiation of a Skycore object and passing an array containing the proper parameters to the makeAPI_Call function.
-	A current list of the calls and their parameters can be found here at https://github.com/SkycoreMobile/API .
+/*
+Skycore SDK v1.0
+--------------------------------------------------
+This SDK will allow for implementation of the Skycore API via instantiation of a Skycore object and passing 
+an array containing the proper parameters to the makeAPI_Call function.
+--------------------------------------------------
+A current list of the calls and their parameters can be found here at https://github.com/SkycoreMobile/API .
+--------------------------------------------------	
+Format Example:
+--------------------------------------------------
+$key = "YOUR_API_KEY_HERE";
 	
-	Format Example:
-	----------------------------------------
-	$key = "YOUR_API_KEY_HERE";
-	
-	$request = array(
-		'action' => 'saveMMS',
-		'subject' => 'testMMS',
-		'content' => array(
-			'name' => 'testMMS',
-			'sequence' => array(
-				'slide duration="10"' => array(
-					'image' => array(
-						'url' => 'example.com'
-					),
-					'text' => 'Some Text'
-				)
+$request = array(
+	'action' => 'saveMMS',
+	'subject' => 'testMMS',
+	'content' => array(
+		'name' => 'testMMS',
+		'sequence' => array(
+			'slide duration="10"' => array(
+				'image' => array(
+					'url' => 'example.com'
+				),
+				'text' => 'Some Text'
 			)
 		)
-	);
+	)
+);
 
-	$skycore = new Skycore($key);
-	$skycoreResponse = $skycore->makeAPI_Call($request);
-	echo $skycoreResponse->STATUS;
-	----------------------------------------
-	*/
+$skycore = new Skycore($key);
+$skycoreResponse = $skycore->makeAPI_Call($request);
+echo $skycoreResponse->STATUS;
+--------------------------------------------------
+*/
 	
-	//----Class Starts Here------
-	class Skycore	{
+//----Class Starts Here------
+class Skycore	{
 	
-		//Skycore constructor variables
-		//-----------------------------
-		private $api_key,
-				$baseURL;
-				
-		//innerArrayCheck variables
-		//-------------------------
-		private $innerXML_tag,
-				$innerRequestInfo,
-				$innerArrayData,
-				$innerArrayCount,
-				$buildTag,
-				$buildTag2,
-				$currentChar,
-				$currentChar2,
-				$counter2,
-				$counter3,
-				$counter4;
-				
-		//innerArrayCheck arrays
-		//----------------------
-		private $innerArray,
-				$innerArray_tag = array();
-				
-		//makeAPI_Call variables
-		//----------------------
-		private $currentXML_tag, 
-				$requestInfo, 
-				$XML_Request, 
-				$response,
-				$counter1;
-				
-		private $array_tag, 
-				$XML_RequestArray = array();
-				
-	
-		//Constructor
-		//-----------
-		public function Skycore($key)	{
-
-			$this->api_key = $key;
-			$this->baseURL = 'https://dev-secure.skycore.com/API/wxml/1.3/index.php?';
-		}
-		
-		//Function to handle Multidimensional Arrays
-		//------------------------------------------
-		private function innerArrayCheck($request, $currentXML_tag)	{
-			//Initialize the main tag
-			$innerArrayData = "<" . strtoupper($currentXML_tag) . ">";
-
-			//Initialize the next array dimension
-			$innerArray = $request[$currentXML_tag];
-			//Get the number of elements in the array
-			$innerArrayCount = count($request[$currentXML_tag]);
-			//Build the XML for the inner array	
-			for($counter2 = 0; $counter2 < $innerArrayCount; $counter2++)	{
-				//Get an array of the array's keys
-				$innerArray_tag = array_keys($innerArray, array_values($innerArray)[$counter2]);
-				//If innerArray_tag returns 1 element, will shift this element to $innerXML_tag, if it returns multiple, it will call the specific element location using $counter2
-				if ("array" == gettype(array_keys($innerArray, array_values($innerArray)[$counter2])))	{
-					$innerXML_tag = array_shift($innerArray_tag);
-				}
-				else	{	
-					$innerXML_tag = $innerArray_tag[$counter2];
-				}
-				//Set the info between the tags
-				$innerRequestInfo = $innerArray[$innerXML_tag];
-				//Check for additional arrays, recursively calls this function if they exist, and builds the XML from the innerArray.
-				if ("array" == gettype(array_values($innerArray)[$counter2]))	{
-					$innerRequestInfo = $this->innerArrayCheck($innerArray, $innerXML_tag);
-					$innerArrayData = $innerArrayData . $innerRequestInfo;
-				}
-				else	{
-				
-					$innerRequestInfo = $innerArray[$innerXML_tag];
-					//Add initial inner tag
-					$innerArrayData = $innerArrayData . "<" . strtoupper($innerXML_tag) . ">" . $innerRequestInfo;
-
-						//Strip any extra data from the closing inner tag
-						for ($counter3 = 0; $counter3 < strlen($innerXML_tag); $counter3++)  { 
-							
-							$currentChar = substr($innerXML_tag, $counter3, 1);
-
-							if ($currentChar == " " || $currentChar == '\0')	{
-								$counter3 = strlen($innerXML_tag);
-								$innerXML_tag = $buildTag;
-								echo $innerXML_tag;
-							}
-	
-							else if ($counter3 == 0){
-								$buildTag = $currentChar;
-							}
-	
-							else	{
-								$buildTag = $buildTag . $currentChar;
-							}
-							
-						} 
-						//Add the closing inner tag
-						$innerArrayData = $innerArrayData . "</" . strtoupper($innerXML_tag) . ">";
-						
-						//Strip any extra data from the closing tag
-						for ($counter4 = 0; $counter4 < strlen($currentXML_tag); $counter4++)  { 
-							
-							$currentChar2 = substr($currentXML_tag, $counter4, 1);
-
-							if ($currentChar2 == " " || $currentChar2 == '\0')	{
-								$counter4 = strlen($currentXML_tag);
-								$currentXML_tag = $buildTag2;
-							}
-	
-							else if ($counter4 == 0){
-								$buildTag2 = $currentChar2;
-							}
-	
-							else	{
-								$buildTag2 = $buildTag2 . $currentChar2;
-							}
-							
-						} 
-
-				}	
-				
-			}	
-			//Add closing main tag
-			$innerArrayData = $innerArrayData . "</" . strtoupper($currentXML_tag) . ">";
-
-			//Return the data in XML format
-			return $innerArrayData;
+	//Skycore constructor variables
+	//-----------------------------
+	private $api_key,
+			$baseURL;
 			
-		}
+	//innerArrayCheck variables
+	//-------------------------
+	private $innerXML_tag,
+			$innerRequestInfo,
+			$innerArrayData,
+			$innerArrayCount,
+			$buildTag,
+			$buildTag2,
+			$currentChar,
+			$currentChar2,
+			$counter2,
+			$counter3,
+			$counter4;
+				
+	//innerArrayCheck arrays
+	//----------------------
+	private $innerArray,
+			$innerArray_tag = array();
+				
+	//makeAPI_Call variables
+	//----------------------
+	private $currentXML_tag, 
+			$requestInfo, 
+			$XML_Request, 
+			$response,
+			$counter1;
+				
+	private $array_tag, 
+			$XML_RequestArray = array();
+				
+	
+	//Constructor
+	//-----------
+	public function Skycore($key)	{
+
+		$this->api_key = $key;
+		$this->baseURL = 'https://dev-secure.skycore.com/API/wxml/1.3/index.php?';
+	}
+	
+	//Function to handle Multidimensional Arrays
+	//------------------------------------------
+	private function innerArrayCheck($request, $currentXML_tag)	{
+		//Initialize the main tag
+		$innerArrayData = "<" . strtoupper($currentXML_tag) . ">";
+
+		//Initialize the next array dimension
+		$innerArray = $request[$currentXML_tag];
+		//Get the number of elements in the array
+		$innerArrayCount = count($request[$currentXML_tag]);
+		//Build the XML for the inner array	
+		for($counter2 = 0; $counter2 < $innerArrayCount; $counter2++)	{
+			//Get an array of the array's keys
+			$innerArray_tag = array_keys($innerArray, array_values($innerArray)[$counter2]);
+			//If innerArray_tag returns 1 element, will shift this element to $innerXML_tag, if it returns multiple, it will call the specific element location using $counter2
+			if ("array" == gettype(array_keys($innerArray, array_values($innerArray)[$counter2])))	{
+				$innerXML_tag = array_shift($innerArray_tag);
+			}
+			else	{	
+				$innerXML_tag = $innerArray_tag[$counter2];
+			}
+			//Set the info between the tags
+			$innerRequestInfo = $innerArray[$innerXML_tag];
+			//Check for additional arrays, recursively calls this function if they exist, and builds the XML from the innerArray.
+			if ("array" == gettype(array_values($innerArray)[$counter2]))	{
+				$innerRequestInfo = $this->innerArrayCheck($innerArray, $innerXML_tag);
+				$innerArrayData = $innerArrayData . $innerRequestInfo;
+			}
+			else	{
+			
+				$innerRequestInfo = $innerArray[$innerXML_tag];
+				//Add initial inner tag
+				$innerArrayData = $innerArrayData . "<" . strtoupper($innerXML_tag) . ">" . $innerRequestInfo;
+
+				//Strip any extra data from the closing inner tag
+				for ($counter3 = 0; $counter3 < strlen($innerXML_tag); $counter3++)  { 
+							
+					$currentChar = substr($innerXML_tag, $counter3, 1);
+					if ($currentChar == " " || $currentChar == '\0')	{
+						$counter3 = strlen($innerXML_tag);
+						$innerXML_tag = $buildTag;
+						echo $innerXML_tag;
+					}
+	
+					else if ($counter3 == 0){
+						$buildTag = $currentChar;
+					}
+	
+					else	{
+						$buildTag = $buildTag . $currentChar;
+					}
+							
+				} 
+				//Add the closing inner tag
+				$innerArrayData = $innerArrayData . "</" . strtoupper($innerXML_tag) . ">";
+						
+				//Strip any extra data from the closing tag
+				for ($counter4 = 0; $counter4 < strlen($currentXML_tag); $counter4++)  { 
+							
+					$currentChar2 = substr($currentXML_tag, $counter4, 1);
+
+					if ($currentChar2 == " " || $currentChar2 == '\0')	{
+						$counter4 = strlen($currentXML_tag);
+						$currentXML_tag = $buildTag2;
+					}
+	
+					else if ($counter4 == 0){
+						$buildTag2 = $currentChar2;
+					}
+	
+					else	{
+						$buildTag2 = $buildTag2 . $currentChar2;
+					}
+							
+				} 
+
+			}	
+				
+		}	
+		//Add closing main tag
+		$innerArrayData = $innerArrayData . "</" . strtoupper($currentXML_tag) . ">";
+
+		//Return the data in XML format
+		return $innerArrayData;
+			
+	}
 
 		//Function for an API call
 		//------------------------
