@@ -1,4 +1,4 @@
-------------------------------------------------------------------------------------------------------<BR/>
+------------------------------------SUBSCRIBE FORM----------------------------------------------------------<BR/>
 <form action="skycore_sdk_example.php" method="get">
 
 Enter your phone number:<input type="text" name="mobile"><BR/>
@@ -7,7 +7,7 @@ Format: 1-XXX-XXX-XXXX (excluding hyphens)<BR/>
 <input type="submit" name="submit" value="Subscribe">
 
 </form>
-------------------------------------------------------------------------------------------------------<BR/>
+-----------------------------------SEND PASS IN EMAIL FORM---------------------------------------------------<BR/>
 <form action="skycore_sdk_example.php" method="get">
 
 Enter your Email:<input type="text" name="email"><BR/>
@@ -16,7 +16,7 @@ Format: example@example.com<BR/>
 <input type="submit" name="submit" value="Send Pass To Email">
 
 </form>
-------------------------------------------------------------------------------------------------------<BR/>
+-------------------------------------SAVE MMS FORM-----------------------------------------------------------<BR/>
 <form action="skycore_sdk_example.php" method="get">
 
 Enter Name of the MMS:<input type="text" name="name"><BR/>
