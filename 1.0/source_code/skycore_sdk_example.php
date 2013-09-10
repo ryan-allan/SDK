@@ -39,8 +39,8 @@ Enter Text:<input type="text" name="text2"><BR/>
 include ('skycore_sdk.php');
 	
 //-------API ACCESS INFO-------
-$key = "YOUR_API_KEY_HERE";
-$url = 'API_URL_HERE';
+$key = "YOUR API KEY HERE";
+$url = 'API URL HERE';
 
 //-------Subscribe-------
 
@@ -103,7 +103,7 @@ $request = array(
 */	
 
 //Build a skycore object
-$skycore = new Skycore($key, $url);
+$skycore = new Skycore_API_SDK($key, $url);
 
 //Send a request to the object and get it's response
 $skycoreResponse = $skycore->makeAPI_Call($request);
