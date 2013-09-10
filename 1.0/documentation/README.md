@@ -98,7 +98,7 @@ $skycoreResponse = $skycore->makeAPI_Call($request);
 print_r ($skycoreResponse);
 </pre>
 
-<h4>How to access data from the response object:</h4>
+<h4>How to display/access data from the response object:</h4>
 
 <strong>Basic Format:</strong>
 $skycoreResponse->DESIRED_INFO_TAG;
