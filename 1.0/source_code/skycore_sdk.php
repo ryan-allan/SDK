@@ -35,15 +35,15 @@ $skycoreResponse = $skycore->makeAPI_Call($request);
 echo $skycoreResponse->STATUS;
 --------------------------------------------------
 */
-	
+
 //----Class Starts Here------
-class Skycore	{
-	
+class Skycore_API_SDK	{
+
 	//Skycore constructor variables
 	//-----------------------------
 	private $api_key,
 		$baseURL;
-			
+
 	//innerArrayCheck variables
 	//-------------------------
 	private $innerXML_tag,
@@ -57,12 +57,12 @@ class Skycore	{
 		$counter2,
 		$counter3,
 		$counter4;
-				
+
 	//innerArrayCheck arrays
 	//----------------------
 	private $innerArray,
 		$innerArray_tag = array();
-				
+
 	//makeAPI_Call variables
 	//----------------------
 	private $requestStatus,
@@ -72,19 +72,18 @@ class Skycore	{
 		$XML_Request, 
 		$response,
 		$counter1;
-					
+
 	private $array_tag, 
 		$XML_RequestArray = array();
-				
-	
+
+
 	//Constructor
 	//-----------
-	public function Skycore($key, $url)	{
-
+	public function Skycore_API_SDK($key, $url)	{
 		$this->api_key = $key;
 		$this->baseURL = $url;
 	}
-	
+
 	//Function to handle Multidimensional Arrays
 	//------------------------------------------
 	private function innerArrayCheck($request, $currentXML_tag)	{
@@ -97,119 +96,116 @@ class Skycore	{
 		$innerArrayCount = count($request[$currentXML_tag]);
 		//Build the XML for the inner array	
 		for($counter2 = 0; $counter2 < $innerArrayCount; $counter2++)	{
-			//Get an array of the array's keys
-			$innerArray_tag = array_keys($innerArray, array_values($innerArray)[$counter2]);
-			//If innerArray_tag returns 1 element, will shift this element to $innerXML_tag, if it returns multiple, it will call the specific element location using $counter2
-			if ("array" == gettype(array_keys($innerArray, array_values($innerArray)[$counter2])))	{
-				$innerXML_tag = array_shift($innerArray_tag);
-			}
-			else	{	
-				$innerXML_tag = $innerArray_tag[$counter2];
-			}
-			//Set the info between the tags
-			$innerRequestInfo = $innerArray[$innerXML_tag];
+		
+			//Turn an array key into an array of just that key
+        		 $innerArray_tag = array_keys($innerArray);
+
+			//Convert the $array_tag into a string to be used as an XML tag
+			$innerXML_tag = $innerArray_tag[$counter2];
+
 			//Check for additional arrays, recursively calls this function if they exist, and builds the XML from the innerArray.
-			if ("array" == gettype(array_values($innerArray)[$counter2]))	{
+			if ("array" == gettype($innerArray[$innerXML_tag]))	{
 				$innerRequestInfo = $this->innerArrayCheck($innerArray, $innerXML_tag);
 				$innerArrayData = $innerArrayData . $innerRequestInfo;
 			}
 			else	{
-			
+
 				$innerRequestInfo = $innerArray[$innerXML_tag];
 				//Add initial inner tag
 				$innerArrayData = $innerArrayData . "<" . strtoupper($innerXML_tag) . ">" . $innerRequestInfo;
 
 				//Strip any extra data from the closing inner tag
 				for ($counter3 = 0; $counter3 < strlen($innerXML_tag); $counter3++)  { 
-							
+
 					$currentChar = substr($innerXML_tag, $counter3, 1);
 					if ($currentChar == " " || $currentChar == '\0')	{
 						$counter3 = strlen($innerXML_tag);
 						$innerXML_tag = $buildTag;
 						echo $innerXML_tag;
 					}
-	
+
 					else if ($counter3 == 0){
 						$buildTag = $currentChar;
 					}
-	
+
 					else	{
 						$buildTag = $buildTag . $currentChar;
 					}
-							
+
 				} 
 				//Add the closing inner tag
 				$innerArrayData = $innerArrayData . "</" . strtoupper($innerXML_tag) . ">";
-						
+
 				//Strip any extra data from the closing tag
 				for ($counter4 = 0; $counter4 < strlen($currentXML_tag); $counter4++)  { 
-							
+
 					$currentChar2 = substr($currentXML_tag, $counter4, 1);
 
 					if ($currentChar2 == " " || $currentChar2 == '\0')	{
 						$counter4 = strlen($currentXML_tag);
 						$currentXML_tag = $buildTag2;
 					}
-	
+
 					else if ($counter4 == 0){
 						$buildTag2 = $currentChar2;
 					}
-	
+
 					else	{
 						$buildTag2 = $buildTag2 . $currentChar2;
 					}
-							
+
 				} 
 
 			}	
-				
+
 		}	
 		//Add closing main tag
 		$innerArrayData = $innerArrayData . "</" . strtoupper($currentXML_tag) . ">";
 
 		//Return the data in XML format
 		return $innerArrayData;
-			
+
 	}
 
 	//Function for an API call
 	//------------------------
 	public function makeAPI_Call($request)	{
-		
+
 		$requestVerification = $request;
 		$requestVerification['api_key'] = $this->api_key;	
 		$requestStatus = $this->verifyRequest($requestVerification);
-			
+
 		if(gettype($requestStatus) != 'object')	{
-			
+
 			$requestStatus = "
 			<RESPONSE>
 			<STATUS>Success</STATUS>
 			</RESPONSE>";
-				
+
 			$requestStatus = simplexml_load_string($requestStatus);
 		}
-			
+
 		if($requestStatus->STATUS == 'Failure')	{
 			return $requestStatus;
 			exit();
 		}
-			
+
 		for($counter1 = 0;$counter1 < count($request); $counter1++)	{
-			
+
 			if($counter1 == 0)	{
 				//Initialize the XML Request
-				$XML_Request = "<REQUEST>" . "<API_KEY>" . $this->api_key . "</API_KEY>";	
+				$XML_Request = "<REQUEST>" . "<API_KEY>" . $this->api_key . "</API_KEY>";
 			}
-				
+
 			//Turn an array key into an array of just that key
-			$array_tag = array_keys($request, array_values($request)[$counter1]);
-				
+            		$array_tag = array_keys($request);
+			//print_r($array_tag);
+
 			//Convert the $array_tag into a string to be used as an XML tag
-			$currentXML_tag = array_shift($array_tag);
-				
+			$currentXML_tag = $array_tag[$counter1];
+			
 			//Check for multidimensional arrays
-			if ("array" == gettype(array_values($request)[$counter1]))	{
+			if ("array" == gettype($request[$currentXML_tag]))	{
 				$requestInfo = $this->innerArrayCheck($request, $currentXML_tag);
 				$XML_Request = $XML_Request . $requestInfo;
 			}
@@ -217,59 +213,64 @@ class Skycore	{
 				$requestInfo = $request[$currentXML_tag];
 				$XML_Request = $XML_Request . "<" . strtoupper($currentXML_tag) . ">" . $requestInfo . "</" . strtoupper($currentXML_tag) . ">";
 			}
-				
+
 			if($counter1 == (count($request)) - 1)	{
 				//Complete the XML request
 				$XML_Request = $XML_Request . "</". "REQUEST" . ">";
 			}
-				
+
 		}
-			
+
 		//Build the request array
 		$XML_RequestArray['XML']= $XML_Request;
-			
+		
+		//print_r($XML_RequestArray);
+
 		//Make the HTTPS request and return the response
 		return $this->httpsRequest($XML_RequestArray);
 	}
-		
+
 	//Function to make an HTTPS request
 	//---------------------------------
 	private function httpsRequest($XML_RequestArray)	{
-		
+
 		$ch = curl_init();
-			
+
 		curl_setopt($ch, CURLOPT_URL, $this->baseURL);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $XML_RequestArray);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			
+		
 		//set XML response
 		$response = curl_exec($ch);
+
+		//print_r($response);
+		//echo($response);
 		
 		curl_close($ch);
-			
+
 		//Convert response to simple XML object
 		$XML_Response = simplexml_load_string($response);
-			
+
 		//Return the response
 		return $XML_Response;
 	}
-		
+
 	//Function to verify the request before sending
 	//---------------------------------------------
 	private function verifyRequest ($content_values)	{
-		
+
 		//Generic Field Requirements
 		if ($content_values['action']=="") {
 			return $this->ReportXMLError("E101", "'action' required/Invalid Action", $content_values);
 		}
-			
+
 		if ($content_values['api_key']=="") {
 			return $this->ReportXMLError("E102", "'api_key' required", $content_values);
 		}
-			
+
 		//Send SMS
 		elseif (strtolower($content_values['action'])=='sendsms') {
         
@@ -285,30 +286,30 @@ class Skycore	{
 				return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
 			}
 		}
-			
+
 		//Save MMS
 		elseif (strtolower($content_values['action'])=='savemms') {
-				
+
 			if ($content_values['content']['name']=="") {
 				return $this->ReportXMLError("E301", "The 'name' is required", $content_values);
 			}
-				
+
 			//Take an the sequence as a numerically indexed array to work around the variation in slide tags
 			$numericArray = array_values($content_values['content']['sequence']);
-				
+
 			if ($numericArray[0]=="" || $numericArray[0]==0) {
 				return $this->ReportXMLError("E302", "No slides", $content_values);
 			}
         
 			for ($i=0; $i<count($numericArray); $i++) {
-					
+
 				if ($numericArray[$i]['image']['url']=="" && $numericArray[$i]['audio']['url']=="" && $numericArray[$i]['video']['url']=="" && $numericArray[$i]['text']['value']=="") {
 					return $this->ReportXMLError("E303", "Slide ".$i." is empty", $content_values);
 				}
 			}
-					
+
 		}
-			
+
 		//Get Sending Statistics
 		elseif (strtolower($content_values['action'])=='getsendingstatistics') {
         
@@ -338,7 +339,7 @@ class Skycore	{
 
 			if ($matches[0]!='') {
 				$content_values['end_timestamp'] = strtotime($content_values['end_date']);
-					
+
 				if ($content_values['end_timestamp']===-1) {
 					return $this->ReportXMLError("E508", "Invalid 'end_date' format", $content_values);
 				}
@@ -347,7 +348,7 @@ class Skycore	{
 				return $this->ReportXMLError("E507", "Invalid 'end_date' format", $content_values);
 			}
 		}
-			
+
 		//Send Saved MMS
 		elseif (strtolower($content_values['action'])=='sendsavedmms') {
 			$MAX_NUMBERS_IN_LIST=100;
@@ -368,7 +369,7 @@ class Skycore	{
 				return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
 			}
 		}
-			
+
 		//Send Saved MMS Campaign
 		elseif (strtolower($content_values['action'])=='sendsavedmmscampaign') {
         
@@ -380,7 +381,7 @@ class Skycore	{
 				return $this->ReportXMLError("E624", "The 'tocampaign' is required", $content_values);
 			}
 		}
-			
+
 		//Send Saved Email
 		elseif (strtolower($content_values['action'])=='sendsavedemail') {
         
@@ -392,7 +393,7 @@ class Skycore	{
 				return $this->ReportXMLError("E401", "Invalid email", $content_values);
 			}
 		}
-			
+
 		//Remove Inbox Content
 		elseif (strtolower($content_values['action'])=='removemmsinboxcontent') {
         
@@ -400,7 +401,7 @@ class Skycore	{
 				return $this->ReportXMLError("E640", "The 'mmsinboxid' is required", $content_values);
 			}
 		}
-			
+
 		//Subscribe/Unsubscribe
 		elseif (strtolower($content_values['action'])=='subscribe' || strtolower($content_values['action'])=='unsubscribe') {
         
@@ -412,7 +413,7 @@ class Skycore	{
 				return $this->ReportXMLError("E902", "The 'campaignid' is required", $content_values);
 			}
 		}
-			
+
 		//Email subscribe/unsubscribe
 		elseif (strtolower($content_values['action'])=='subscribeemail' || strtolower($content_values['action'])=='unsubscribeemail') {
         
@@ -424,7 +425,7 @@ class Skycore	{
 				return $this->ReportXMLError("E912", "Invalid campaignid", $content_values);
 			}
 		}
-			
+
 		//Create User
 		elseif (strtolower($content_values['action'])=='createuser') {
         
@@ -436,7 +437,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E152", "The 'newpass' is required", $content_values );
 			}
 		}
-			
+
 		//Create MMS Campaign
 		elseif (strtolower($content_values['action'])=='createmmscampaign') {
         
@@ -448,7 +449,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E171", "'brandname' is required.", $content_values );
 			}
 		}
-			
+
 		//Create Email Campaign
 		elseif (strtolower($content_values['action'])=='createemailcampaign') {
         
@@ -464,7 +465,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E173", "'mailingaddress' is required.", $content_values );
 			}
 		}
-			
+
 		//Send MMS Barcode
 		elseif (strtolower($content_values['action'])=='sendmmsbarcode') {
         
@@ -484,7 +485,7 @@ class Skycore	{
 				return $this->ReportXMLError("E111", "Invalid shortcode", $content_values);
 			}
 		}
-			
+
 		//Add Pass Data
 		elseif (strtolower($content_values['action'])=='addpassdata') {
         
@@ -492,7 +493,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E801", "The PassTemplateID is required", $content_values );
 			}
 		}
-			
+
 		//Update Pass Data - *This will also update the pass*
 		elseif (strtolower($content_values['action'])=='updatepass') {
         
@@ -500,7 +501,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
 			}
 		}
-			
+
 		//Delete Pass Data
 		elseif (strtolower($content_values['action'])=='deletepassdata') {
         
@@ -508,7 +509,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
 			}
 		}
-			
+
 		//Send Pass in MMS
 		elseif (strtolower($content_values['action'])=='sendpassinmms') {
         
@@ -525,7 +526,7 @@ class Skycore	{
 			}
        
 		}
-		
+
 		//Send Pass in Email
 		elseif (strtolower($content_values['action'])=='sendpassinemail') {
         
@@ -542,7 +543,7 @@ class Skycore	{
 			}
        
 		}
-			
+
 		//Generate Pass by Pass Data ID
 		elseif (strtolower($content_values['action'])=='generatepassbyid') {
     
@@ -550,7 +551,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E807", "The PassDataID is required", $content_values );
 			}
 		}
-			
+
 		//Generate Pass 
 		elseif (strtolower($content_values['action'])=='generatepass') {
     
@@ -558,7 +559,7 @@ class Skycore	{
 				return $this->ReportXMLError ( "E801", "The PassTemplateID is required", $content_values );
 			}
 		}
-			
+
 		//Get Pass Template
 		elseif (strtolower($content_values['action'])=='getpasstemplate') {
         
@@ -571,22 +572,22 @@ class Skycore	{
 		elseif (strtolower($content_values['action'])=='loginuser')	{
 			//Nothing Needed Here
 		}
-		
+
 		//Get MMS ID's
 		elseif(strtolower($content_values['action'])=='getmmsids')	{
 			//Nothing Needed Here
 		}
-			
+
 		//Get Email ID's
 		elseif(strtolower($content_values['action'])=='getemailids')	{
 			//Nothing Needed Here
 		}
-			
+
 		//Get Email Campaigns
 		elseif(strtolower($content_values['action'])=='getemailcampaigns')	{
 			//Nothing Needed Here
 		}
-			
+
 		//Get Pass Template ID's
 		elseif(strtolower($content_values['action'])=='getpasstemplateids')	{
 			//Nothing Needed Here
@@ -595,13 +596,13 @@ class Skycore	{
 		else {
 			return $this->ReportXMLError("E101", "'action' required/Invalid Action");
 		}
-			
+
 	}
-		
+
 	//Function to report any errors found by the verifyRequest function
 	//-----------------------------------------------------------------
 	private function ReportXMLError($code, $description)	{
-			
+
 	   //Build the error response
 	   $Error_Response = "
 		<RESPONSE>
@@ -612,12 +613,12 @@ class Skycore	{
 
 		//Convert response to simple XML object
 		$XML_Response = simplexml_load_string($Error_Response);
-			
+
 		//return the response
 		return $XML_Response;
 
 	}
 
 }
-	
+
 ?>
