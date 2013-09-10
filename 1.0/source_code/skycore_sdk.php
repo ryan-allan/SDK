@@ -98,7 +98,7 @@ class Skycore_API_SDK	{
 		for($counter2 = 0; $counter2 < $innerArrayCount; $counter2++)	{
 		
 			//Turn an array key into an array of just that key
-        		 $innerArray_tag = array_keys($innerArray);
+        		$innerArray_tag = array_keys($innerArray);
 
 			//Convert the $array_tag into a string to be used as an XML tag
 			$innerXML_tag = $innerArray_tag[$counter2];
@@ -199,12 +199,11 @@ class Skycore_API_SDK	{
 
 			//Turn an array key into an array of just that key
             		$array_tag = array_keys($request);
-			//print_r($array_tag);
 
 			//Convert the $array_tag into a string to be used as an XML tag
 			$currentXML_tag = $array_tag[$counter1];
 			
-			//Check for multidimensional arrays
+			//Check for additional arrays
 			if ("array" == gettype($request[$currentXML_tag]))	{
 				$requestInfo = $this->innerArrayCheck($request, $currentXML_tag);
 				$XML_Request = $XML_Request . $requestInfo;
