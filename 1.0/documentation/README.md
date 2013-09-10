@@ -18,8 +18,8 @@ A current list of the calls and their respective parameters/responses can be fou
 <pre>
 include ('skycore_sdk.php');
 
-$key = "<strong>YOUR_API_KEY_HERE</strong>";
-$url = '<strong>API_URL_HERE</strong>';
+$key = "<strong>YOUR API KEY HERE</strong>";
+$url = '<strong>API URL HERE</strong>';
 </pre>
 
 <strong>Build Example Request 1:</strong>
@@ -85,7 +85,7 @@ $request = array(
 
 <strong>Build a Skycore Object</strong>
 <pre>
-$skycore = new Skycore($key);
+$skycore = new Skycore_API_SDK($key);
 </pre>
 
 <strong>Send a request to the object and get it's response</strong>
