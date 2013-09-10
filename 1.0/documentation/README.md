@@ -110,7 +110,7 @@ echo $skycoreResponse->STATUS;
 </pre>
 
 <strong>Example 2:</strong>
-For Error Information (If the status returns as 'Failure':
+For Error Information (If the status returns as 'Failure'):
 <pre>
 echo $skycoreResponse->ERRORCODE;
 echo $skycoreResponse->ERRORINFO;
