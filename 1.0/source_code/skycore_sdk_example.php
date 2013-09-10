@@ -111,7 +111,7 @@ $skycoreResponse = $skycore->makeAPI_Call($request);
 //Print out the whole response
 print_r ($skycoreResponse);
 
-//Access a piece of data in the response
+//----Access a piece of data in the response
 
 //----Retrieve the status of the response
 //echo $skycoreResponse->STATUS;
@@ -120,7 +120,7 @@ print_r ($skycoreResponse);
 //echo $skycoreResponse->ERRORCODE;
 //echo $skycoreResponse->ERRORINFO;
 
-//----Retrive the Email ID's----
+//----Retrive the Email ID's
 //echo $skycoreResponse->EMAILIDS;
 
 ?>
