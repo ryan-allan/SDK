@@ -10,6 +10,6 @@ need to add the API key and URL here:
 <pre>
 include ('skycore_sdk.php');
 //-------API ACCESS INFO-------
-$key = "<strong>YOUR_API_KEY_HERE</strong>";
-$url = '<strong>API_URL_HERE</strong>';
+$key = "<strong>YOUR API KEY HERE</strong>";
+$url = '<strong>API URL HERE</strong>';
 </pre>
