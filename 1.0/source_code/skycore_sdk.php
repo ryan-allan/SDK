@@ -245,9 +245,6 @@ class Skycore_API_SDK	{
 		
 		//set XML response
 		$response = curl_exec($ch);
-
-		//print_r($response);
-		//echo($response);
 		
 		curl_close($ch);
 
