@@ -1,6 +1,6 @@
-<a href="/1.0/README.md">Back To Skycore SDK v1.0 Main Page</a>
+<a name="DocTop"><a href="/1.0/README.md">Back To Skycore SDK v1.0 Main Page</a>
 
-<a name="DocTop"><h2>Skycore SDK v1.0 Documentation</h2>
+<h2>Skycore SDK v1.0 Documentation</h2>
 
 <strong>Synopsis:</strong>
 This SDK will allow for implementation of the Skycore API and Storing of Skycore Postbacks via instantiation of an object of the Skycore class and passing 
