@@ -130,7 +130,7 @@ For the 'Example 4' "get" request:
 <pre>
 echo $skycoreResponse->EMAILIDS;
 </pre>
-[Back To The Top](#DocTop)
+
 <a name="PostbackStore"><h3>Postback Store Example:</h3>
 
 <strong>Include the SDK</strong>
