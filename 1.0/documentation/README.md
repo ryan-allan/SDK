@@ -131,3 +131,4 @@ For the 'Example 4' "get" request:
 <pre>
 echo $skycoreResponse->EMAILIDS;
 </pre>
+<h3>Postback Store Example:</h3>
