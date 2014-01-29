@@ -104,8 +104,8 @@ class Skycore_API_SDK        {
         private $array_tag, 
                 $XML_RequestArray = array();
 		
-		//storePostback variables
-		//-----------------------
+	//storePostback variables
+	//-----------------------
 	private $SkycorePostback,
 		$SkycorePostbackObject,
 		$dbHost,
