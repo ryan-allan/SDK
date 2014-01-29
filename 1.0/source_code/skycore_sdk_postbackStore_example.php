@@ -5,7 +5,7 @@ include ('skycore_sdk.php');
 $key = "YOUR API KEY HERE";
 $url = 'API URL HERE';  
 
-//-------DATABASE STORING INFO------
+//-------POSTBACK STORING INFO------
 $dbHost = 'YOUR HOST NAME HERE';
 $dbUser = 'USER NAME HERE';
 $dbPW = 'PASSWORD HERE';
