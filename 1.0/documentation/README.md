@@ -19,7 +19,7 @@ A current list of the API calls, Postback Formats and their parameters can be fo
 <h6>The following examples work in conjunction with these files for optimal understanding of the SDK functionalities:</h6>
 <ul>
 <li><a href="/1.0/source_code/skycore_sdk_API_Call_example.php">skycore_sdk_API_Call_example.php</a></li>
-<li><a href="/1.0/source_code/skycore_sdk_storePostback_example.php">skycore_sdk_storePostback_example.php</a></li>
+<li><a href="/1.0/source_code/skycore_sdk_postbackStore_example.php">skycore_sdk_postbackStore_example.php</a></li>
 </ul>
 
 <h3>API Call Format and Usage Examples:</h3>
