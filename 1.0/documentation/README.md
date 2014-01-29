@@ -13,7 +13,8 @@ function to an object and access any of the data from the response via this assi
 To store a Postback: You must configure the proper parameters [See Examples Below].  The method will return true if it was completed 
 or false if it failed to make the connection.
 
-A current list of the calls and their respective parameters/responses can be found <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/API_METHODS.md">here</a> .
+A current list of the API calls, Postback Formats and their parameters can be found 
+<a href="https://github.com/SkycoreMobile/API/blob/master/1.3/README.md">here</a> .
 
 <h6>The following examples work in conjunction with the <a href="/1.0/source_code/skycore_sdk_example.php">skycore_sdk_example.php</a> file for optimal understanding of the SDK functionalities.</h6>
 
