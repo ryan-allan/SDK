@@ -127,8 +127,8 @@ class Skycore_API_SDK        {
                 $this->baseURL = $url;
         }
 		
-		//Function to store a Postback
-		//----------------------------
+	//Function to store a Postback
+	//----------------------------
 	public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable)	{
 		
 		//Convert to XML Object
