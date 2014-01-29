@@ -153,7 +153,7 @@ class Skycore_API_SDK        {
 			//Build if it does not
 			if (!$colCheck){
 				mysqli_query($link, "ALTER TABLE $dbTable ADD $dbColumn VARCHAR(60)");
-				echo $dbColumn . ' has been added to the database';
+				//echo $dbColumn . ' has been added to the database';
 			}
 		}
 		//Build the query
