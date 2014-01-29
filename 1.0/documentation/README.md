@@ -146,7 +146,7 @@ $url = 'API URL HERE';
 </pre>
 
 <strong>Configure Database Access Information</strong>
-</pre>
+<pre>
 $dbHost = 'YOUR HOST NAME HERE';
 $dbUser = 'USER NAME HERE';
 $dbPW = 'PASSWORD HERE';
