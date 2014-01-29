@@ -5,7 +5,7 @@
 <strong><a href="/1.0/source_code/skycore_sdk.php">Click Here for the SDK Source Code</a></strong>.
 
 The <a href="/1.0/source_code/skycore_sdk_API_Call_example.php">API Call Example</a> is a small and 
-simple implementation of the SDK's makeAPI_Call method to help give new users a good idea of how the SDK works.  A user will need to add the API key and URL here:
+simple implementation of the SDK's makeAPI_Call method to help give new users a good idea of how the API calls work.  A user will need to add the API key and URL here:
 <pre>
 include ('skycore_sdk.php');
 //-------API ACCESS INFO-------
@@ -14,7 +14,7 @@ $url = '<strong>API URL HERE</strong>';
 </pre>
 
 The <a href="/1.0/source_code/skycore_sdk_postbackStore_example.php">Postback Store Example</a> is a small and 
-simple implementation of the SDK's storePostback method to help give new users a good idea of how the SDK works.  A user will need to add the API key, URL, and Database Information here:
+simple implementation of the SDK's storePostback method to help give new users a good idea of how to store a postback using the SDK.  A user will need to add the API key, URL, and Database Information here:
 <pre>
 include ('skycore_sdk.php');
 //-------API ACCESS INFO-------
