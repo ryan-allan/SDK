@@ -109,7 +109,7 @@ $skycore = new Skycore_API_SDK($key, $url);
 $skycoreResponse = $skycore->makeAPI_Call($request);
 
 //Print out the whole response
-print_r ($skycoreResponse);
+//print_r ($skycoreResponse);
 
 //----Access a piece of data in the response
 
