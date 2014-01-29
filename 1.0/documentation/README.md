@@ -137,21 +137,17 @@ echo $skycoreResponse->EMAILIDS;
 <?php
 include ('skycore_sdk.php');
      
-//-------API ACCESS INFO-------
 $key = "YOUR API KEY HERE";
 $url = 'API URL HERE';  
 
-//-------POSTBACK STORING INFO------
 $dbHost = 'YOUR HOST NAME HERE';
 $dbUser = 'USER NAME HERE';
 $dbPW = 'PASSWORD HERE';
 $db = 'DATABASE NAME HERE';
 $dbTable = 'TABLE NAME HERE';
-</pre>
-//Build a skycore object
+
 $skycore = new Skycore_API_SDK($key, $url);
 
-//Grab the postback
 $SkycorePostback = $_POST['XML'];
 
 //Example XML For Testing
