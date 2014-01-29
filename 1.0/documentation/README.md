@@ -133,27 +133,37 @@ echo $skycoreResponse->EMAILIDS;
 </pre>
 
 <h3>Postback Store Example:</h3>
-<pre>
-//Include the SDK
-include ('skycore_sdk.php');
 
-//Configure API Info     
+<strong>Include the SDK</strong>
+<pre>
+include ('skycore_sdk.php');
+</pre>
+
+<strong>Configure API Info</strong>  
+<pre>
 $key = "YOUR API KEY HERE";
 $url = 'API URL HERE';  
+</pre>
 
-//Configure Database Access Information
+<strong>Configure Database Access Information</strong>
+</pre>
 $dbHost = 'YOUR HOST NAME HERE';
 $dbUser = 'USER NAME HERE';
 $dbPW = 'PASSWORD HERE';
 $db = 'DATABASE NAME HERE';
 $dbTable = 'TABLE NAME HERE';
+</pre>
 
-//Build a skycore object
+<strong>Build a skycore object</strong>
+<pre>
 $skycore = new Skycore_API_SDK($key, $url);
+</pre>
 
-//Grab The XML
+<strong>Grab The XML</strong>
+<pre>
 $SkycorePostback = $_POST['XML'];
-
-//-------Store Postback--------
+</pre>
+<strong>Store the Postback</strong>
+<pre>
 $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable);
 </pre>
