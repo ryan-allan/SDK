@@ -21,9 +21,9 @@ include ('skycore_sdk.php');
 $key = "<strong>YOUR API KEY HERE</strong>";
 $url = '<strong>API URL HERE</strong>';
 //-------DATABASE STORING INFO------
-$dbHost = 'YOUR HOST NAME HERE';
-$dbUser = 'USER NAME HERE';
-$dbPW = 'PASSWORD HERE';
-$db = 'DATABASE NAME HERE';
-$dbTable = 'TABLE NAME HERE';
+$dbHost = '<strong>YOUR HOST NAME HERE</strong>';
+$dbUser = '<strong>USER NAME HERE</strong>';
+$dbPW = '<strong>PASSWORD HERE</strong>';
+$db = '<strong>DATABASE NAME HERE</strong>';
+$dbTable = '<strong>TABLE NAME HERE</strong>';
 </pre>
