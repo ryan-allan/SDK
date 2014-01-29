@@ -106,19 +106,19 @@ class Skycore_API_SDK        {
 		
 		//storePostback variables
 		//-----------------------
-		private $SkycorePostback,
-				$SkycorePostbackObject,
-				$dbHost,
-				$dbUser,
-				$dbPW,
-				$db,
-				$dbTable,
-				$dbColumn,
-				$dbColumnInfo,
-				$element,
-				$colCheck,
-				$link,
-				$query;
+	private $SkycorePostback,
+		$SkycorePostbackObject,
+		$dbHost,
+		$dbUser,
+		$dbPW,
+		$db,
+		$dbTable,
+		$dbColumn,
+		$dbColumnInfo,
+		$element,
+		$colCheck,
+		$link,
+		$query;
 				
         //Constructor
         //-----------
