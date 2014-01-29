@@ -134,7 +134,6 @@ echo $skycoreResponse->EMAILIDS;
 
 <h3>Postback Store Example:</h3>
 <pre>
-<?php
 include ('skycore_sdk.php');
      
 $key = "YOUR API KEY HERE";
@@ -170,5 +169,4 @@ XML;
 
 //-------Store Postback--------
 $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable);
-?>
 </pre>
