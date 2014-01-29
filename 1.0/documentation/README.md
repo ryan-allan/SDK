@@ -9,7 +9,7 @@ the proper parameters to the respective function.
 <strong>To make an API call:</strong> You must create an array and pass it to the makeAPI_Call function [See Examples Below](#APICalls), one can then assign the return value of this
 function to an object and access any of the data from the response via this assigned object.
 
-<strong>To store a Postback:</strong> You must configure the proper parameters [See Examples Below](#PostbackStore).  The method will return true if it was completed 
+<strong>To store a Postback:</strong> You must configure the proper parameters and pass it to the storePostback function [See Examples Below](#PostbackStore).  The method will return true if it was completed 
 or false if it failed to make the connection.
 
 A current list of the API calls, Postback Formats and their parameters can be found 
