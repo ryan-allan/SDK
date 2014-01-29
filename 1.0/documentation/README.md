@@ -17,9 +17,10 @@ A current list of the API calls, Postback Formats and their parameters can be fo
 <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/README.md">here</a> .
 
 <h6>The following examples work in conjunction with these files for optimal understanding of the SDK functionalities:</h6>
-<a href="/1.0/source_code/skycore_sdk_API_Call_example.php">skycore_sdk_API_Call_example.php</a> </BR>
-<a href="/1.0/source_code/skycore_sdk_storePostback_example.php">skycore_sdk_storePostback_example.php</a> </BR>
-
+<ul>
+<li><a href="/1.0/source_code/skycore_sdk_API_Call_example.php">skycore_sdk_API_Call_example.php</a></li>
+<li><a href="/1.0/source_code/skycore_sdk_storePostback_example.php">skycore_sdk_storePostback_example.php</a></li>
+</ul>
 
 <h3>API Call Format and Usage Examples:</h3>
 
