@@ -1,16 +1,15 @@
 <a href="/1.0/README.md">Back To Skycore SDK v1.0 Main Page</a>
 
-
 <h2>Skycore SDK v1.0 Documentation</h2>
 
 <strong>Synopsis:</strong>
 This SDK will allow for implementation of the Skycore API and Storing of Skycore Postbacks via instantiation of an object of the Skycore class and passing 
 the proper parameters to the respective function.  
 
-<strong>To make an API call:</strong> You must create an array and pass it to the makeAPI_Call function [See Examples Below], one can then assign the return value of this
+<strong>To make an API call:</strong> You must create an array and pass it to the makeAPI_Call function [See Examples Below](#APICalls), one can then assign the return value of this
 function to an object and access any of the data from the response via this assigned object.
 
-<strong>To store a Postback:</strong> You must configure the proper parameters [See Examples Below].  The method will return true if it was completed 
+<strong>To store a Postback:</strong> You must configure the proper parameters [See Examples Below](#PostbackStore).  The method will return true if it was completed 
 or false if it failed to make the connection.
 
 A current list of the API calls, Postback Formats and their parameters can be found 
@@ -22,7 +21,7 @@ A current list of the API calls, Postback Formats and their parameters can be fo
 <li><a href="/1.0/source_code/skycore_sdk_postbackStore_example.php">skycore_sdk_postbackStore_example.php</a></li>
 </ul>
 
-<h3>API Call Format and Usage Examples:</h3>
+<a name="APICalls"><h3>API Call Format and Usage Examples:</h3>
 
 <strong>Include the SDK and initialize your API Key and URL:</strong>
 <pre>
@@ -132,7 +131,7 @@ For the 'Example 4' "get" request:
 echo $skycoreResponse->EMAILIDS;
 </pre>
 
-<h3>Postback Store Example:</h3>
+<a name="PostbackStore"><h3>Postback Store Example:</h3>
 
 <strong>Include the SDK</strong>
 <pre>
