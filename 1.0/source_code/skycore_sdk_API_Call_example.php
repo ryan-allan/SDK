@@ -111,7 +111,8 @@ $skycoreResponse = $skycore->makeAPI_Call($request);
 //Print out the whole response
 //print_r ($skycoreResponse);
 
-//----Access a piece of data in the response
+//----Ways to access different pieces of data in the response
+//-----------------------------------------------------------
 
 //----Retrieve the status of the response
 //echo $skycoreResponse->STATUS;
