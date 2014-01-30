@@ -43,7 +43,6 @@ $key = "YOUR API KEY HERE";
 $url = 'API URL HERE';
 
 //-------Subscribe-------
-
 /*
 $request = array(
 	'action'	 => 'subscribe',
