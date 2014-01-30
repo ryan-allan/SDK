@@ -170,4 +170,4 @@ $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable
 
 <a name="FindInfo"><h3>HELP! I can't find...</h3>
 
-<img src='https://github.com/ryan-allan/SDK/blob/master/1.0/documentation/CantFindAPI_Configs.png'>
+<img src='https://raw.github.com/ryan-allan/SDK/master/1.0/documentation/CantFindAPI_Configs.png'>
