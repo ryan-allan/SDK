@@ -11,7 +11,7 @@ function to an object and access any of the data from the response via this assi
 To store a Postback: You must configure the proper parameters and pass it to the storePostback function [See Example Below].  The method will return true if it was completed 
 or false if it failed to make the connection.
 --------------------------------------------------
-A current list of the API calls, Postback Formats and their parameters can be found here at https://github.com/SkycoreMobile/API/blob/master/1.3/README.md .
+A current list of the API calls, Postback Formats and their parameters can be found here: https://github.com/SkycoreMobile/API/blob/master/1.3/README.md .
 --------------------------------------------------        
 API Call Format Example:
 --------------------------------------------------
