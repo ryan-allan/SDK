@@ -167,3 +167,7 @@ $SkycorePostback = $_POST['XML'];
 $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable);
 </pre>
 [Back To The Top](#DocTop)
+
+<a name="FindInfo"><h3>HELP! I can't find...</h3>
+
+<img src='http://thejakeharding.com/images/current_avatar.png'>
