@@ -23,10 +23,11 @@ or false if it failed to make the connection.
 
 <a name="APICalls"><h3>API Call Format and Usage Examples:</h3>
 
-<strong>Include the SDK and initialize your API Key and URL:</strong>
-
 <strong>Finding the API Configs:</strong>
 <img src='https://raw.github.com/ryan-allan/SDK/master/1.0/documentation/CantFindAPI_Configs.png'>
+
+<strong>Include the SDK and initialize your API Key and URL:</strong>
+
 <pre>
 include ('skycore_sdk.php');
 
