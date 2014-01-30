@@ -63,7 +63,7 @@ $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable
 --------------------------------------------------
 */
 
-//----DO NOT EDIT BELOW THIS LINE----
+//--------------------------------------------DO NOT EDIT BELOW THIS LINE---------------------------------------
 //----Class Starts Here------
 class Skycore_API_SDK        {
 
