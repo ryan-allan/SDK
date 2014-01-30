@@ -40,7 +40,7 @@ echo $skycoreResponse->STATUS;
 --------------------------------------------------
 Postback Store Format Example:
 --------------------------------------------------
-//---THE POSTBACK LINK SHOULD POINT TO THIS DOCUMENT-----------------------------
+//-------THE POSTBACK LINK SHOULD POINT TO THE DOCUMENT CONTAINING THIS CODE-------
 //-------API ACCESS INFO-------
 $key = "YOUR API KEY HERE";
 $url = 'API URL HERE';  
