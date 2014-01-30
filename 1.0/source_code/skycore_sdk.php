@@ -5,10 +5,10 @@ Skycore SDK v1.0
 This SDK will allow for implementation of the Skycore API and Storing of Skycore Postbacks via instantiation of an object of the Skycore class and passing 
 the proper parameters to the respective function.  
 
-To make an API call: You must create an array and pass it to the makeAPI_Call function [See Examples Below]. One can then assign the return value of this
+To make an API call: You must create an array and pass it to the makeAPI_Call function [See Example Below]. One can then assign the return value of this
 function to an object and access any of the data from the response via this assigned object.
 
-To store a Postback: You must configure the proper parameters and pass it to the storePostback function [See Examples Below].  The method will return true if it was completed 
+To store a Postback: You must configure the proper parameters and pass it to the storePostback function [See Example Below].  The method will return true if it was completed 
 or false if it failed to make the connection.
 --------------------------------------------------
 A current list of the API calls, Postback Formats and their parameters can be found here at https://github.com/SkycoreMobile/API/blob/master/1.3/README.md .
