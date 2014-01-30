@@ -136,6 +136,8 @@ echo $skycoreResponse->EMAILIDS;
 </pre>
 
 <a name="PostbackStore"><h3>Postback Store Example:</h3>
+<strong>What will the table look like?</strong>
+<img src='https://raw.github.com/ryan-allan/SDK/master/1.0/documentation/DB_Example.png'>
 
 <strong>Include the SDK</strong>
 <pre>
