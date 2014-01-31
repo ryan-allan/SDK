@@ -138,8 +138,6 @@ echo $skycoreResponse->EMAILIDS;
 [Back To The Top](#DocTop)
 
 <a name="PostbackStore"><h3>Postback Store Example:</h3>
-<strong>What will the table look like?</strong>
-<img src='https://raw.github.com/ryan-allan/SDK/master/1.0/documentation/DB_Example.png'>
 <strong>Include the SDK</strong>
 <pre>
 include ('skycore_sdk.php');
@@ -173,4 +171,7 @@ $SkycorePostback = $_POST['XML'];
 <pre>
 $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable);
 </pre>
+
+<strong>What will the table look like?</strong>
+<img src='https://raw.github.com/ryan-allan/SDK/master/1.0/documentation/DB_Example.png'>
 [Back To The Top](#DocTop)
