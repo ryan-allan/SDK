@@ -198,7 +198,7 @@ class Skycore_API_SDK        {
                         //Turn an array key into an array of just that key
                         $innerArray_tag = array_keys($innerArray);
 
-                        //Convert the $array_tag into a string to be used as an XML tag
+                        //Convert the $innerArray_tag into a string to be used as an XML tag
                         $innerXML_tag = $innerArray_tag[$counter2];
 
                         //Check for additional arrays, recursively calls this function if they exist, and builds the XML from the innerArray.
