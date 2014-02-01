@@ -45,7 +45,7 @@ $url = 'API URL HERE';
 //-------Subscribe-------
 /*
 $request = array(
-	'action'	 => 'subscribe',
+	'action'     => 'subscribe',
 	'campaignid' => 'YOUR CAMPAIGN ID HERE',
 	'mobile'     => $_GET["mobile"]
 );
@@ -54,13 +54,13 @@ $request = array(
 //-------Send Pass In Email-------
 /*
 $request = array(
-	'action' => 'sendPassInEmail',
-	'emailid' => 'YOUR EMAIL ID HERE',
-	'email' => $_GET["email"],
+	'action'      => 'sendPassInEmail',
+	'emailid'     => 'YOUR EMAIL ID HERE',
+	'email'       => $_GET["email"],
 	'campaignref' => 'YOUR CAMPAIGN REF HERE',
-	'passdata' => array(
+	'passdata'    => array(
 		'barcodevalue' => '1234',
-		'barcodetext' => '5678'
+		'barcodetext'  => '5678'
 	)
 );
 
