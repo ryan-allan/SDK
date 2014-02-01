@@ -104,21 +104,21 @@ class Skycore_API_SDK        {
         private $array_tag, 
                 $XML_RequestArray = array();
 		
-		//storePostback variables
-		//-----------------------
-		private $SkycorePostback,
-				$SkycorePostbackObject,
-				$dbHost,
-				$dbUser,
-				$dbPW,
-				$db,
-				$dbTable,
-				$dbColumn,
-				$dbColumnInfo,
-				$element,
-				$colCheck,
-				$link,
-				$query;
+	//storePostback variables
+	//-----------------------
+	private $SkycorePostback,
+		$SkycorePostbackObject,
+		$dbHost,
+		$dbUser,
+		$dbPW,
+		$db,
+		$dbTable,
+		$dbColumn,
+		$dbColumnInfo,
+		$element,
+		$colCheck,
+		$link,
+		$query;
 				
         //Constructor
         //-----------
@@ -210,79 +210,78 @@ class Skycore_API_SDK        {
 
         }
 		
-		//Function to construct a query
-		//-----------------------------
-		private function constructQuery($SkycorePostbackObject, $dbTable)	{
+	//Function to construct a query
+	//-----------------------------
+	private function constructQuery($SkycorePostbackObject, $dbTable)	{
 		
-			$query = "INSERT INTO $dbTable (";
-			foreach ($SkycorePostbackObject as $element) {
-				$dbColumn = $element->getName();
-				//Convert TO tag to PHONE (TO is a keyword in the SQL)
-				if($dbColumn == "TO")	{
-					$dbColumn = "PHONE";
-				}
-				$query = $query . $dbColumn . ",";
+		$query = "INSERT INTO $dbTable (";
+		foreach ($SkycorePostbackObject as $element) {
+			$dbColumn = $element->getName();
+			//Convert TO tag to PHONE (TO is a keyword in the SQL)
+			if($dbColumn == "TO")	{
+				$dbColumn = "PHONE";
 			}
-			$query = substr($query, 0, strlen($query) - 1);
-			$query = $query . ") VALUES ('";
-			foreach ($SkycorePostbackObject as $element) {
-				$dbColumnInfo = trim($element);
-				$query = $query . $dbColumnInfo . "','";
+			$query = $query . $dbColumn . ",";
+		}
+		$query = substr($query, 0, strlen($query) - 1);
+		$query = $query . ") VALUES ('";
+		foreach ($SkycorePostbackObject as $element) {
+			$dbColumnInfo = trim($element);
+			$query = $query . $dbColumnInfo . "','";
+		}
+		$query = substr($query, 0, strlen($query) - 2);
+		$query = $query . ")";
+		return $query;
+		
+	}
+	
+	//Function to check for and build new columns
+	//-------------------------------------------
+	private function columnCheck($SkycorePostbackObject, $dbTable, $link)	{
+	
+		foreach ($SkycorePostbackObject as $element) {
+			$dbColumn = $element->getName();
+			//Convert TO tag to PHONE (TO is a keyword in the SQL)
+			if($dbColumn == "TO")	{
+				$dbColumn = "PHONE";
 			}
-			$query = substr($query, 0, strlen($query) - 2);
-			$query = $query . ")";
-			return $query;
+			$colScan = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
 			
+			//Build if it does not
+			if (!$colScan){
+				mysqli_query($link, "ALTER TABLE $dbTable ADD $dbColumn VARCHAR(60)");
+				//echo $dbColumn . ' has been added to the database';
+			}
 		}
 		
-		//Function to check for and build new columns
-		//-------------------------------------------
-		private function columnCheck($SkycorePostbackObject, $dbTable, $link)	{
+		return true;
 		
-			foreach ($SkycorePostbackObject as $element) {
-				$dbColumn = $element->getName();
-				//Convert TO tag to PHONE (TO is a keyword in the SQL)
-				if($dbColumn == "TO")	{
-					$dbColumn = "PHONE";
-				}
-				$colScan = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
-				
-				//Build if it does not
-				if (!$colScan){
-					mysqli_query($link, "ALTER TABLE $dbTable ADD $dbColumn VARCHAR(60)");
-					//echo $dbColumn . ' has been added to the database';
-				}
-			}
-			
-			return true;
-			
+	}
+	
+	//Function to store a postback
+	//----------------------------
+	public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable)	{
+	
+		//Convert to XML Object
+		$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
+		//Create Connection
+		
+		$link = mysqli_connect("$dbHost","$dbUser","","$db");
+		// Check connection
+		
+		if (mysqli_connect_errno()){
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			return false;
 		}
+		//Check if the columns exist
+		$this->columnCheck($SkycorePostbackObject, $dbTable, $link);
 		
-		//Function to store a postback
-		//----------------------------
-		public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable)	{
-		
-			//Convert to XML Object
-			$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
-			//Create Connection
-			
-			$link = mysqli_connect("$dbHost","$dbUser","","$db");
-			// Check connection
-			
-			if (mysqli_connect_errno()){
-				echo "Failed to connect to MySQL: " . mysqli_connect_error();
-				return false;
-			}
-			//Check if the columns exist
-			$this->columnCheck($SkycorePostbackObject, $dbTable, $link);
-			
-			//Build the query
-			$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
-			mysqli_query($link, $query);
-			mysqli_close($link);
-			return true;
-		}
-
+		//Build the query
+		$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
+		mysqli_query($link, $query);
+		mysqli_close($link);
+		return true;
+	}
         //Function for an API call
         //------------------------
         public function makeAPI_Call($request)        {
