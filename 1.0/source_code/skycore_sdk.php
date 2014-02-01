@@ -282,6 +282,7 @@ class Skycore_API_SDK        {
 		mysqli_close($link);
 		return true;
 	}
+	
         //Function for an API call
         //------------------------
         public function makeAPI_Call($request)        {
