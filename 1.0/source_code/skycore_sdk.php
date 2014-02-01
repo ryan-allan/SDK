@@ -118,7 +118,7 @@ class Skycore_API_SDK        {
 		$dbColumn,
 		$dbColumnInfo,
 		$element,
-		$colCheck,
+		$colScan,
 		$link,
 		$query;
 				
