@@ -264,17 +264,18 @@ class Skycore_API_SDK        {
 	//----------------------------
 	public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable)	{
 	
-		//Convert to XML Object
+		//Convert to XML object
 		$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
-		//Create Connection
 		
+		//Create connection
 		$link = mysqli_connect("$dbHost","$dbUser","","$db");
-		// Check connection
 		
+		//Check connection
 		if (mysqli_connect_errno()){
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			return false;
 		}
+		
 		//Check if the columns exist
 		$this->columnCheck($SkycorePostbackObject, $dbTable, $link);
 		
