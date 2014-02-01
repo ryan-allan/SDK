@@ -100,7 +100,9 @@ class Skycore_API_SDK        {
                 $XML_Request, 
                 $response,
                 $counter1;
-
+                
+	//makeAPI_Call arrays
+        //----------------------
         private $array_tag, 
                 $XML_RequestArray = array();
 		
