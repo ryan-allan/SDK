@@ -5,13 +5,13 @@ Skycore SDK v1.0
 This SDK will allow for implementation of the Skycore API and Storing of Skycore Postbacks via instantiation of an object of the Skycore class and passing 
 the proper parameters to the respective function.  
 
-To make an API call: You must create an array and pass it to the makeAPI_Call function [See Example Below]. One can then assign the return value of this
+To make an API call: You must create an array and pass it to the makeAPI_Call function [See Examples Below], one can then assign the return value of this
 function to an object and access any of the data from the response via this assigned object.
 
-To store a Postback: You must configure the proper parameters and pass it to the storePostback function [See Example Below].  The method will return true if it was completed 
+To store a Postback: You must configure the proper parameters [See Examples Below].  The method will return true if it was completed 
 or false if it failed to make the connection.
 --------------------------------------------------
-A current list of the API calls, Postback Formats and their parameters can be found here: https://github.com/SkycoreMobile/API/blob/master/1.3/README.md .
+A current list of the API calls, Postback Formats and their parameters can be found here at https://github.com/SkycoreMobile/API/blob/master/1.3/README.md .
 --------------------------------------------------        
 API Call Format Example:
 --------------------------------------------------
@@ -40,7 +40,7 @@ echo $skycoreResponse->STATUS;
 --------------------------------------------------
 Postback Store Format Example:
 --------------------------------------------------
-//-------THE POSTBACK LINK SHOULD POINT TO THE DOCUMENT CONTAINING THIS CODE-------
+//---THE POSTBACK LINK SHOULD POINT TO THIS DOCUMENT-----------------------------
 //-------API ACCESS INFO-------
 $key = "YOUR API KEY HERE";
 $url = 'API URL HERE';  
@@ -63,7 +63,7 @@ $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable
 --------------------------------------------------
 */
 
-//--------------------------------------------DO NOT EDIT BELOW THIS LINE---------------------------------------
+//----DO NOT EDIT BELOW THIS LINE----
 //----Class Starts Here------
 class Skycore_API_SDK        {
 
@@ -100,27 +100,25 @@ class Skycore_API_SDK        {
                 $XML_Request, 
                 $response,
                 $counter1;
-                
-	//makeAPI_Call arrays
-        //----------------------
+
         private $array_tag, 
                 $XML_RequestArray = array();
 		
-	//storePostback variables
-	//-----------------------
-	private $SkycorePostback,
-		$SkycorePostbackObject,
-		$dbHost,
-		$dbUser,
-		$dbPW,
-		$db,
-		$dbTable,
-		$dbColumn,
-		$dbColumnInfo,
-		$element,
-		$colCheck,
-		$link,
-		$query;
+		//storePostback variables
+		//-----------------------
+		private $SkycorePostback,
+				$SkycorePostbackObject,
+				$dbHost,
+				$dbUser,
+				$dbPW,
+				$db,
+				$dbTable,
+				$dbColumn,
+				$dbColumnInfo,
+				$element,
+				$colCheck,
+				$link,
+				$query;
 				
         //Constructor
         //-----------
@@ -129,60 +127,7 @@ class Skycore_API_SDK        {
                 $this->baseURL = $url;
         }
 		
-	//Function to store a Postback
-	//----------------------------
-	public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable)	{
-		
-		//Convert to XML Object
-		$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
-	
-		//Create Connection
-		$link = mysqli_connect("$dbHost","$dbUser","$dbPW","$db");
-		// Check connection
-		if (mysqli_connect_errno()){
-			echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			return false;
-		}
-		//Check if the columns exist
-		foreach ($SkycorePostbackObject as $element) {
-			$dbColumn = $element->getName();
-			//Convert TO tag to PHONE (TO is a keyword in the SQL)
-			if($dbColumn == "TO")	{
-				$dbColumn = "PHONE";
-			}
-			$colCheck = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
-			
-			//Build if it does not
-			if (!$colCheck){
-				mysqli_query($link, "ALTER TABLE $dbTable ADD $dbColumn VARCHAR(60)");
-				//echo $dbColumn . ' has been added to the database';
-			}
-		}
-		//Build the query
-		$query = "INSERT INTO $dbTable (";
-		foreach ($SkycorePostbackObject as $element) {
-			$dbColumn = $element->getName();
-			//Convert TO tag to PHONE (TO is a keyword in the SQL)
-			if($dbColumn == "TO")	{
-				$dbColumn = "PHONE";
-			}
-			$query = $query . $dbColumn . ",";
-		}
-		$query = substr($query, 0, strlen($query) - 1);
-		$query = $query . ") VALUES ('";
-		foreach ($SkycorePostbackObject as $element) {
-			$dbColumnInfo = trim($element);
-			$query = $query . $dbColumnInfo . "','";
-		}
-		$query = substr($query, 0, strlen($query) - 2);
-		$query = $query . ")";
-		mysqli_query($link, $query);
-		mysqli_close($link);
-		
-		return true;
-	}
-		
-        //Function to handle Multidimensional Arrays
+        //Function to handle multidimensional arrays
         //------------------------------------------
         private function innerArrayCheck($request, $currentXML_tag)        {
                 //Initialize the main tag
@@ -198,7 +143,7 @@ class Skycore_API_SDK        {
                         //Turn an array key into an array of just that key
                         $innerArray_tag = array_keys($innerArray);
 
-                        //Convert the $innerArray_tag into a string to be used as an XML tag
+                        //Convert the $array_tag into a string to be used as an XML tag
                         $innerXML_tag = $innerArray_tag[$counter2];
 
                         //Check for additional arrays, recursively calls this function if they exist, and builds the XML from the innerArray.
@@ -264,6 +209,79 @@ class Skycore_API_SDK        {
                 return $innerArrayData;
 
         }
+		
+		//Function to construct a query
+		//-----------------------------
+		private function constructQuery($SkycorePostbackObject, $dbTable)	{
+		
+			$query = "INSERT INTO $dbTable (";
+			foreach ($SkycorePostbackObject as $element) {
+				$dbColumn = $element->getName();
+				//Convert TO tag to PHONE (TO is a keyword in the SQL)
+				if($dbColumn == "TO")	{
+					$dbColumn = "PHONE";
+				}
+				$query = $query . $dbColumn . ",";
+			}
+			$query = substr($query, 0, strlen($query) - 1);
+			$query = $query . ") VALUES ('";
+			foreach ($SkycorePostbackObject as $element) {
+				$dbColumnInfo = trim($element);
+				$query = $query . $dbColumnInfo . "','";
+			}
+			$query = substr($query, 0, strlen($query) - 2);
+			$query = $query . ")";
+			return $query;
+			
+		}
+		
+		//Function to check for and build new columns
+		//-------------------------------------------
+		private function columnCheck($SkycorePostbackObject, $dbTable, $link)	{
+		
+			foreach ($SkycorePostbackObject as $element) {
+				$dbColumn = $element->getName();
+				//Convert TO tag to PHONE (TO is a keyword in the SQL)
+				if($dbColumn == "TO")	{
+					$dbColumn = "PHONE";
+				}
+				$colScan = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
+				
+				//Build if it does not
+				if (!$colScan){
+					mysqli_query($link, "ALTER TABLE $dbTable ADD $dbColumn VARCHAR(60)");
+					//echo $dbColumn . ' has been added to the database';
+				}
+			}
+			
+			return true;
+			
+		}
+		
+		//Function to store a postback
+		//----------------------------
+		public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable)	{
+		
+			//Convert to XML Object
+			$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
+			//Create Connection
+			
+			$link = mysqli_connect("$dbHost","$dbUser","","$db");
+			// Check connection
+			
+			if (mysqli_connect_errno()){
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+				return false;
+			}
+			//Check if the columns exist
+			$this->columnCheck($SkycorePostbackObject, $dbTable, $link);
+			
+			//Build the query
+			$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
+			mysqli_query($link, $query);
+			mysqli_close($link);
+			return true;
+		}
 
         //Function for an API call
         //------------------------
@@ -342,6 +360,8 @@ class Skycore_API_SDK        {
                 
                 //set XML response
                 $response = curl_exec($ch);
+				
+				//print_r($response);
                 
                 curl_close($ch);
 
