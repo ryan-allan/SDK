@@ -213,7 +213,7 @@ class Skycore_API_SDK        {
         }
 		
 	//Function to construct and return a query
-	//-----------------------------
+	//----------------------------------------
 	private function constructQuery($SkycorePostbackObject, $dbTable)	{
 		
 		$query = "INSERT INTO $dbTable (";
