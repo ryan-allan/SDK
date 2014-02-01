@@ -212,7 +212,7 @@ class Skycore_API_SDK        {
 
         }
 		
-	//Function to construct a query
+	//Function to construct and return a query
 	//-----------------------------
 	private function constructQuery($SkycorePostbackObject, $dbTable)	{
 		
@@ -280,6 +280,7 @@ class Skycore_API_SDK        {
 		
 		//Build the query
 		$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
+		
 		mysqli_query($link, $query);
 		mysqli_close($link);
 		return true;
