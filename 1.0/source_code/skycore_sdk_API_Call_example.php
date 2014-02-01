@@ -72,22 +72,22 @@ $durationSlide1 = 'slide duration="' . $_GET["duration1"] .'"';
 $durationSlide2 = 'slide duration="' . $_GET["duration2"] .'"';
 
 $request = array(
-	'action' => 'saveMMS',
+	'action'  => 'saveMMS',
 	'subject' => 'testMMS',
 	'content' => array(
-		'name' => $_GET["name"],
+		'name'     => $_GET["name"],
 		'sequence' => array(
 			$durationSlide1 => array(
 				'image' => array(
 					'url' => $_GET["url1"]
 				),
-				'text' => $_GET["text1"]
+				'text'  => $_GET["text1"]
 			),
 			$durationSlide2 => array(
 				'image' => array(
 					'url' => $_GET["url2"]
 				),
-				'text' => $_GET["text2"]
+				'text'  => $_GET["text2"]
 			)
 		)
 	)
