@@ -1,3 +1,11 @@
+<?php
+/*
+Each form is matched with its respective array below.  You must de-comment the array to use it's respective form and 
+keep the others commented.  To use multple forms you may change the name of the arrays to request1, request2 etc...
+and then send them to the skycore object 1 at a time.
+*/
+?>
+
 ------------------------------------SUBSCRIBE FORM-----------------------------------------------------------<BR/>
 <form action="skycore_sdk_API_Call_example.php" method="get">
 
