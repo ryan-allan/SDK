@@ -276,7 +276,7 @@ class Skycore_API_SDK        {
 			return false;
 		}
 		
-		//Check if the columns exist
+		//Check if the columns exist, builds them if they do not
 		$this->columnCheck($SkycorePostbackObject, $dbTable, $link);
 		
 		//Build the query
