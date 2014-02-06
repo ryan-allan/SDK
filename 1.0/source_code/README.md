@@ -9,8 +9,8 @@ simple implementation of the SDK's makeAPI_Call method to help give new users a 
 <pre>
 include ('skycore_sdk.php');
 //-------API ACCESS INFO-------
-$key     =  '<strong>YOUR API KEY HERE</strong>';
-$url     =  '<strong>API URL HERE</strong>';
+$key = '<strong>YOUR API KEY HERE</strong>';
+$url = '<strong>API URL HERE</strong>';
 </pre>
 
 The <a href="/1.0/source_code/skycore_sdk_postbackStore_example.php">Postback Store Example</a> is a small and 
@@ -18,12 +18,12 @@ simple implementation of the SDK's storePostback method to help give new users a
 <pre>
 include ('skycore_sdk.php');
 //-------API ACCESS INFO-------
-$key     =  '<strong>YOUR API KEY HERE</strong>';
-$url     =  '<strong>API URL HERE</strong>';
+$key = '<strong>YOUR API KEY HERE</strong>';
+$url = '<strong>API URL HERE</strong>';
 //-------DATABASE STORING INFO------
-$dbHost  =  '<strong>YOUR HOST NAME HERE</strong>';
-$dbUser  =  '<strong>USER NAME HERE</strong>';
-$dbPW    =  '<strong>PASSWORD HERE</strong>';
-$db      =  '<strong>DATABASE NAME HERE</strong>';
-$dbTable =  '<strong>TABLE NAME HERE</strong>';
+$dbHost = '<strong>YOUR HOST NAME HERE</strong>';
+$dbUser = '<strong>USER NAME HERE</strong>';
+$dbPW = '<strong>PASSWORD HERE</strong>';
+$db = '<strong>DATABASE NAME HERE</strong>';
+$dbTable = '<strong>TABLE NAME HERE</strong>';
 </pre>
