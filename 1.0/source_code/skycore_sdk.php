@@ -268,7 +268,7 @@ class Skycore_API_SDK        {
 		$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
 		
 		//Create connection
-		$link = mysqli_connect("$dbHost","$dbUser","","$db");
+		$link = mysqli_connect("$dbHost","$dbUser","$dbPW","$db");
 		
 		//Check connection
 		if (mysqli_connect_errno()){
