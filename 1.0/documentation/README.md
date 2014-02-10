@@ -10,7 +10,7 @@ the proper parameters to the respective function.
 function to an object and access any of the data from the response via this assigned object.
 
 <strong>To store a Postback:</strong> You must configure the proper parameters and pass it to the storePostback function [See Examples Below](#PostbackStore).  The method will return true if it was completed 
-or false if it failed to make the connection.
+or false if it failed to make the connection.  <strong>Note:</strong> The storePostback function utilizes mysqli() functions to manipulate the database.
 
 **A current list of the API calls, Postback Formats and their parameters can be found 
 <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/README.md">here</a> .**
