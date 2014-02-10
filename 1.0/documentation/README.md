@@ -7,7 +7,7 @@ This SDK will allow for implementation of the Skycore API and Storing of Skycore
 the proper parameters to the respective function.  
 
 <strong>To make an API call:</strong> You must create an array and pass it to the makeAPI_Call function [(See Examples Below)](#APICalls), one can then assign the return value of this function to an object and access any of the data from the response via this assigned object.<br>
-<strong>Note:</strong> When making a request array one can ignore the [<REQUEST></REQUEST>] and "<API_KEY></API_KEY>" tags.
+<strong>Note:</strong> When making a request array one can ignore the REQUEST and API_KEY tags.
 
 <strong>To store a Postback:</strong> You must configure the proper parameters and pass it to the storePostback function [(See Examples Below)](#PostbackStore).  The method will return true if it was completed 
 or false if it failed to make the connection.  
