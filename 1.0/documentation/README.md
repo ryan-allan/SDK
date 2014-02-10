@@ -45,7 +45,7 @@ $request = array(
 );
 </pre>
 
-<strong>Build Example Request 2:</strong>
+<strong>Build Example Request 2 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/sendPassInEmail.md">correlating XML:</a>:</strong>
 <pre>
 $request = array(
 	'action' => 'sendPassInEmail',
@@ -59,7 +59,7 @@ $request = array(
 );
 </pre>
 
-<strong>Build Example Request 3:</strong>
+<strong>Build Example Request 3 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/saveMMS.md">correlating XML:</a>:</strong>
 <pre>
 $duration1 = 'slide duration="' . $_GET["duration1"] .'"';
 $duration2 = 'slide duration="' . $_GET["duration2"] .'"';
@@ -87,7 +87,7 @@ $request = array(
 );
 </pre>
 
-<strong>Build Example Request 4:</strong><BR/>
+<strong>Build Example Request 4 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/getEmailIds.md">correlating XML:</a>:</strong><BR/>
 
 <strong>Note:</strong> Any "get" requests will return the desired information in the response object.
 
