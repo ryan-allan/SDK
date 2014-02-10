@@ -27,9 +27,6 @@ or false if it failed to make the connection.
 <strong>Finding the API Configs:</strong>
 <img src='https://raw.github.com/ryan-allan/SDK/master/1.0/documentation/CantFindAPI_Configs.png'>
 
-<strong>General format to map the XML example to a request array</strong>
-<img src='https://raw.github.com/ryan-allan/SDK/master/1.0/documentation/XML_To_Array_Example.png'>
-
 <strong>Include the SDK and initialize your API Key and URL:</strong>
 
 <pre>
