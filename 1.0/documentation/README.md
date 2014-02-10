@@ -163,7 +163,7 @@ $dbTable = 'TABLE NAME HERE';
 $skycore = new Skycore_API_SDK($key, $url);
 </pre>
 
-<strong>Grab The XML</strong>
+<strong>Grab The XML from the POST fields</strong>
 <pre>
 $SkycorePostback = $_POST['XML'];
 </pre>
