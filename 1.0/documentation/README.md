@@ -35,7 +35,8 @@ $key = "<strong>YOUR API KEY HERE</strong>";
 $url = '<strong>API URL HERE</strong>';
 </pre>
 
-<strong>Build Example Request 1:</strong>
+<strong>Build Example Request 1 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/subscribe+unsubscribe.md">correlating XML:</a></strong>
+
 <pre>
 $request = array(
 	'action'	 => 'subscribe',
