@@ -105,9 +105,9 @@ $request = array(
 
 //-------Get Email ID's-------
 /*
-	$request = array(
-		'action' => 'getemailids'
-	);
+$request = array(
+	'action' => 'getemailids'
+);
 */	
 
 //Build a skycore object
