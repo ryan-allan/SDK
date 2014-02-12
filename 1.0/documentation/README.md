@@ -61,28 +61,29 @@ $request = array(
 
 <strong>Build Example Request 3 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/saveMMS.md">correlating XML</a>:</strong>
 <pre>
-$duration1 = 'slide duration="' . $_GET["duration1"] .'"';
-$duration2 = 'slide duration="' . $_GET["duration2"] .'"';
-
 $request = array(
-	'action' => 'saveMMS',
-	'subject' => 'testMMS',
-	'content' => array(
-		'name' => $_GET["name"],
-		'sequence' => array(
-			$duration1 => array(
-				'image' => array(
-					'url' => $_GET["url1"]
-				),
-				'text' => 'Some Text'
+	'action'  => 'saveMMS',
+	'subject' => 'Subject',
+	'name' => 'Name',
+	'slide' => array(
+		'image' => array(
+			'url' => 'image.example.com'
 			),
-			$duration2 => array(
-				'image' => array(
-					'url' => $_GET["url2"]
-				),
-				'text' => 'Some Text'
-			)
-		)
+		'audio' => array(
+			'url' => 'audio.example.com'
+			),
+		'text' => 'Some Text',
+		'duration' => '5'
+	),
+	'slide' => array(
+		'image' => array(
+			'url' => 'image.example.com'
+			),
+		'audio' => array(
+			'url' => 'audio.example.com'
+			),
+		'text' => 'Some Text',
+		'duration' => '10'
 	)
 );
 </pre>
