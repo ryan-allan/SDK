@@ -71,35 +71,34 @@ $request = array(
 		'barcodetext'  => '5678'
 	)
 );
-
 */
 
 //-------Save MMS-------
 /*
 $request = array(
-    'action'  => 'saveMMS',
-    'subject' => 'Subject',
-    'name' => 'Name',
-    'slide' => array(
-        'image' => array(
-            'url' => 'image.example.com'
-        ),
-        'audio' => array(
-            'url' => 'audio.example.com'
-        ),
-        'text' => 'Some Text',
-        'duration' => '5'
-    ),
-    'slide' => array(
-        'image' => array(
-            'url' => 'image.example.com'
-        ),
-        'audio' => array(
-            'url' => 'audio.example.com'
-        ),
-        'text' => 'Some Text',
-        'duration' => '10'
-    )
+    	'action'  => 'saveMMS',
+  	'subject' => 'Subject',
+    	'name' => 'Name',
+    	'slide' => array(
+        	'image' => array(
+            		'url' => 'image.example.com'
+        	),
+        	'audio' => array(
+            		'url' => 'audio.example.com'
+        	),
+        	'text' => 'Some Text',
+        	'duration' => '5'
+    	),
+    	'slide' => array(
+        	'image' => array(
+            		'url' => 'image.example.com'
+        	),
+        	'audio' => array(
+            		'url' => 'audio.example.com'
+		 ),
+        	'text' => 'Some Text',
+        	'duration' => '10'
+    	)
 );
 */
 
