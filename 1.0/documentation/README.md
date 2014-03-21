@@ -38,53 +38,66 @@ $url = '<strong>API URL HERE</strong>';
 <strong>Build Example Request 1 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/subscribe+unsubscribe.md">correlating XML</a>:</strong>
 
 <pre>
+$action = 'subscribe';
+$campaginid = 'YOUR CAMPAIGN ID HERE';
+$mobile = 'YOUR MOBILE HERE';
 $request = array(
-	'action'	 => 'subscribe',
-	'campaignid' => '1605',
-	'mobile'     => '13215552234'
+	'action'     => $subscribe
+	'campaignid' => $campaignid,
+	'mobile'     => $mobile
 );
 </pre>
 
 <strong>Build Example Request 2 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/sendPassInEmail.md">correlating XML</a>:</strong>
 <pre>
-$request = array(
-	'action' => 'sendPassInEmail',
-	'emailid' => '42876',
-	'email' => 'example.email@example.com',
-	'campaignref' => '805',
-	'passdata' => array(
+$action = 'sendPassInEmail';
+$emailid = 'YOUR EMAIL ID HERE';
+$email = 'YOUR EMAIL HERE';
+$campaignref = 'YOUR CAMPAIGN REF HERE';
+$passdata = array(
 		'barcodevalue' => '1234',
-		'barcodetext' => '5678'
-	)
+		'barcodetext'  => '5678'
+	);
+$request = array(
+	'action'      => $action,
+	'emailid'     => $emailid,
+	'email'       => $email,
+	'campaignref' => $campaignref,
+	'passdata'    => $passdata
 );
 </pre>
 
 <strong>Build Example Request 3 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/saveMMS.md">correlating XML</a>:</strong>
 <pre>
+$action = 'saveMMS';
+$subject = 'THE SUBJECT HERE';
+$name = 'THE NAME HERE';
+$slide1 = array(
+        	'image' => array(
+            		'url' => 'image.example.com'
+        	),
+        	'audio' => array(
+            		'url' => 'audio.example.com'
+        	),
+        	'text' => 'Some Text',
+        	'duration' => '5'
+    	);
+$slide2 = array(
+        	'image' => array(
+            		'url' => 'image.example.com'
+        	),
+        	'audio' => array(
+            		'url' => 'audio.example.com'
+		 ),
+        	'text' => 'Some Text',
+        	'duration' => '10'
+    	);
 $request = array(
-	'action'  => 'saveMMS',
-	'subject' => 'Subject',
-	'name' => 'Name',
-	'slide' => array(
-		'image' => array(
-			'url' => 'image.example.com'
-		),
-		'audio' => array(
-			'url' => 'audio.example.com'
-		),
-		'text' => 'Some Text',
-		'duration' => '5'
-	),
-	'slide' => array(
-		'image' => array(
-			'url' => 'image.example.com'
-		),
-		'audio' => array(
-			'url' => 'audio.example.com'
-		),
-		'text' => 'Some Text',
-		'duration' => '10'
-	)
+    	'action'  => $action,
+  	'subject' => $subject,
+    	'name' => $name,
+    	'slide' => $slide1,
+    	'slide' => $slide2
 );
 </pre>
 
@@ -93,8 +106,9 @@ $request = array(
 <strong>Note:</strong> Any "get" requests will return the desired information in the response object.
 
 <pre>
+$action = 'getemailids';
 $request = array(
-	'action' => 'getemailids'
+	'action' => $action
 );
 </pre>	
 
