@@ -52,34 +52,41 @@ $url = 'API URL HERE';
 
 //-------Subscribe-------
 /*
+$action = 'subscribe';
+$campaginid = 'YOUR CAMPAIGN ID HERE';
+$mobile = 'YOUR MOBILE HERE';
 $request = array(
-	'action'     => 'subscribe',
-	'campaignid' => 'YOUR CAMPAIGN ID HERE',
-	'mobile'     => $_GET["mobile"]
+	'action'     => $action,
+	'campaignid' => $campaignid,
+	'mobile'     => $mobile
 );
 */
 
 //-------Send Pass In Email-------
 /*
-$request = array(
-	'action'      => 'sendPassInEmail',
-	'emailid'     => 'YOUR EMAIL ID HERE',
-	'email'       => $_GET["email"],
-	'campaignref' => 'YOUR CAMPAIGN REF HERE',
-	'passdata'    => array(
+$action = 'sendPassInEmail';
+$emailid = 'YOUR EMAIL ID HERE';
+$email = 'YOUR EMAIL HERE';
+$campaignref = 'YOUR CAMPAIGN REF HERE';
+$passdata = array(
 		'barcodevalue' => '1234',
 		'barcodetext'  => '5678'
-	)
+	);
+$request = array(
+	'action'      => $action,
+	'emailid'     => $emailid,
+	'email'       => $email,
+	'campaignref' => $campaignref,
+	'passdata'    => $passdata
 );
 */
 
 //-------Save MMS-------
 /*
-$request = array(
-    	'action'  => 'saveMMS',
-  	'subject' => 'Subject',
-    	'name' => 'Name',
-    	'slide' => array(
+$action = 'saveMMS';
+$subject = 'THE SUBJECT HERE';
+$name = 'THE NAME HERE';
+$slide1 = array(
         	'image' => array(
             		'url' => 'image.example.com'
         	),
@@ -88,8 +95,8 @@ $request = array(
         	),
         	'text' => 'Some Text',
         	'duration' => '5'
-    	),
-    	'slide' => array(
+    	);
+$slide2 = array(
         	'image' => array(
             		'url' => 'image.example.com'
         	),
@@ -98,14 +105,21 @@ $request = array(
 		 ),
         	'text' => 'Some Text',
         	'duration' => '10'
-    	)
+    	);
+$request = array(
+    	'action'  => $action,
+  	'subject' => $subject,
+    	'name' => $name,
+    	'slide' => $slide1,
+    	'slide' => $slide2
 );
 */
 
 //-------Get Email ID's-------
 /*
+$action = 'getemailids';
 $request = array(
-	'action' => 'getemailids'
+	'action' => $action
 );
 */	
 
