@@ -1,5 +1,4 @@
 <?php
-
 include ('skycore_sdk.php');
 	
 //-------API ACCESS INFO-------
