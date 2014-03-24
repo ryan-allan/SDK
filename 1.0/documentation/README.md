@@ -32,7 +32,7 @@ or false if it failed to make the connection.
 <pre>
 include ('skycore_sdk.php');
 $key = "<strong>YOUR API KEY HERE</strong>";
-$url = '<strong>API URL HERE</strong>';
+$url = '<strong>YOUR API URL HERE</strong>';
 </pre>
 
 <strong>Build Example Request 1 from <a href="https://github.com/SkycoreMobile/API/blob/master/1.3/CONTENTS/METHODS/subscribe+unsubscribe.md">correlating XML</a>:</strong>
