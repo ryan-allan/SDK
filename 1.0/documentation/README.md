@@ -182,11 +182,15 @@ $skycore = new Skycore_API_SDK($key, $url);
 
 <strong>Grab The XML from the POST fields</strong>
 <pre>
-$SkycorePostback = $_POST['XML'];
+$HTTP_RAW_POST_DATA = file_get_contents("php://input");
+if ($_POST['xml'] == '' && $_GET['action']==''  && $_POST['action']=='' && $HTTP_RAW_POST_DATA!='')	{
+	$_POST['xml'] = $HTTP_RAW_POST_DATA;
+}
+$SkycorePostback = $_POST['xml'];
 </pre>
 <strong>Store the Postback</strong>
 <pre>
-$skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable);
+$skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable, $dbSQL);
 </pre>
 
 <strong>What will the table look like?</strong>
