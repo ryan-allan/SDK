@@ -6,7 +6,6 @@ $key = 'YOUR API KEY HERE';
 $url = 'YOUR API URL HERE';  
 
 //-------DATABASE STORING INFO------
-
 $dbHost = 'YOUR HOST NAME HERE';
 $dbUser = 'USER NAME HERE';
 $dbPW = 'PASSWORD HERE';
