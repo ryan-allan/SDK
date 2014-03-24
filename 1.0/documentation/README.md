@@ -14,7 +14,7 @@ the proper parameters to the respective function.
 
 <strong>To store a Postback:</strong> You must configure the proper parameters and pass it to the storePostback function [(See Examples Below)](#PostbackStore).  The method will return true if it was completed 
 or false if it failed to make the connection.  
-<strong>Note:</strong> The storePostback function utilizes mysqli() functions to manipulate the database.
+<strong>Note:</strong> The storePostback function utilizes mysqli() or pg functions to manipulate the database based on the SQL type you have set.
 
 <h6>The following examples work in conjunction with these files for optimal understanding of the SDK functionalities:</h6>
 <ul>
