@@ -51,6 +51,7 @@ $dbUser = 'USER NAME HERE';
 $dbPW = 'PASSWORD HERE';
 $db = 'DATABASE NAME HERE';
 $dbTable = 'TABLE NAME HERE';
+$dbSQL = 'SQL TYPE HERE';
 
 //Build a skycore object
 $skycore = new Skycore_API_SDK($key, $url);
