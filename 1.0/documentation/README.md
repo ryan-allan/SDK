@@ -162,7 +162,7 @@ include ('skycore_sdk.php');
 <strong>Configure API Info</strong>  
 <pre>
 $key = "YOUR API KEY HERE";
-$url = 'API URL HERE';  
+$url = 'YOUR API URL HERE';  
 </pre>
 
 <strong>Configure Database Access Information</strong>
@@ -172,6 +172,7 @@ $dbUser = 'USER NAME HERE';
 $dbPW = 'PASSWORD HERE';
 $db = 'DATABASE NAME HERE';
 $dbTable = 'TABLE NAME HERE';
+$dbSQL = 'SQL TYPE HERE';
 </pre>
 
 <strong>Build a skycore object</strong>
