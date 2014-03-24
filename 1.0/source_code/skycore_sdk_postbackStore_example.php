@@ -23,6 +23,6 @@ if ($_POST['xml'] == '' && $_GET['action']==''  && $_POST['action']=='' && $HTTP
 }
 $SkycorePostback = $_POST['xml'];
 
-//---------------Store Postback---------------
+//Store the postback
 $skycore->storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable, $dbSQL);
 ?>
