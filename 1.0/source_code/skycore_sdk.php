@@ -97,28 +97,28 @@ class Skycore_API_SDK        {
                 $XML_Request, 
                 $response,
                 $counter1;
-		//makeAPI_Call arrays
-		//-------------------
+	//makeAPI_Call arrays
+	//-------------------
         private $array_tag, 
                 $XML_RequestArray = array();
-		//storePostback variables
-		//-----------------------
-		private $SkycorePostback,
-			$SkycorePostbackObject,
-			$dbHost,
-			$dbUser,
-			$dbPW,
-			$db,
-			$dbTable,
-			$dbColumn,
-			$dbColumnInfo,
-			$dbSQL,
-			$element,
-			$fileCounter,
-			$result,
-			$colCheck,
-			$link,
-			$query;		
+	//storePostback variables
+	//-----------------------
+	private $SkycorePostback,
+		$SkycorePostbackObject,
+		$dbHost,
+		$dbUser,
+		$dbPW,
+		$db,
+		$dbTable,
+		$dbColumn,
+		$dbColumnInfo,
+		$dbSQL,
+		$element,
+		$fileCounter,
+		$result,
+		$colCheck,
+		$link,
+		$query;		
         //Constructor
         //-----------
         public function Skycore_API_SDK($key, $url)        {
