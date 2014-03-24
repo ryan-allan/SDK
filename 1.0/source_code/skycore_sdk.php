@@ -103,135 +103,106 @@ class Skycore_API_SDK        {
 		//storePostback variables
 		//-----------------------
 		private $SkycorePostback,
-				$SkycorePostbackObject,
-				$dbHost,
-				$dbUser,
-				$dbPW,
-				$db,
-				$dbTable,
-				$dbColumn,
-				$dbColumnInfo,
-				$dbSQL,
-				$element,
-				$fileCounter,
-				$result,
-				$colCheck,
-				$link,
-				$query;		
+			$SkycorePostbackObject,
+			$dbHost,
+			$dbUser,
+			$dbPW,
+			$db,
+			$dbTable,
+			$dbColumn,
+			$dbColumnInfo,
+			$dbSQL,
+			$element,
+			$fileCounter,
+			$result,
+			$colCheck,
+			$link,
+			$query;		
         //Constructor
         //-----------
         public function Skycore_API_SDK($key, $url)        {
                 $this->api_key = $key;
                 $this->baseURL = $url;
         }
-		//Function to construct a query
-		//-----------------------------
-		private function constructQuery($SkycorePostbackObject, $dbTable)	{
-			$query = "INSERT INTO $dbTable (";
-			foreach ($SkycorePostbackObject as $element) {
-				$dbColumn = $element->getName();
-				if($dbColumn == "NOTIFICATION")	{
-					$query = $this->constructQuery($element, $dbTable);
-					return $query;
-				}
-				//Convert TO/FROM tags to PHONE (TO/FROM are keywords in the SQL)
-				if($dbColumn == "TO")	{
-					$dbColumn = "PHONETO";
-				}
-				if($dbColumn == "FROM")	{
-					$dbColumn = "PHONEFROM";
-				}
-				if($dbColumn == "CONTENT")	{
-					$fileCounter = 0;
-					while($element->FILE[$fileCounter] != null)	{
-						$dbColumn = "FILE" . ($fileCounter + 1);
-						$fileCounter++;
-						$query = $query . $dbColumn . ",";
-					}
-				}
-				else	{
+	//Function to construct a query
+	//-----------------------------
+	private function constructQuery($SkycorePostbackObject, $dbTable)	{
+		$query = "INSERT INTO $dbTable (";
+		foreach ($SkycorePostbackObject as $element) {
+			$dbColumn = $element->getName();
+			if($dbColumn == "NOTIFICATION")	{
+				$query = $this->constructQuery($element, $dbTable);
+				return $query;
+			}
+			//Convert TO/FROM tags to PHONE (TO/FROM are keywords in the SQL)
+			if($dbColumn == "TO")	{
+				$dbColumn = "PHONETO";
+			}
+			if($dbColumn == "FROM")	{
+				$dbColumn = "PHONEFROM";
+			}
+			if($dbColumn == "CONTENT")	{
+				$fileCounter = 0;
+				while($element->FILE[$fileCounter] != null)	{
+					$dbColumn = "FILE" . ($fileCounter + 1);
+					$fileCounter++;
 					$query = $query . $dbColumn . ",";
 				}
 			}
-			$query = substr($query, 0, strlen($query) - 1);
-			$query = $query . ") VALUES ('";
-			foreach ($SkycorePostbackObject as $element) {
-				if($element->getName() == "CONTENT")	{
-					$fileCounter = 0;
-					while($element->FILE[$fileCounter] != null)	{
-						$dbColumnInfo = $element->FILE[$fileCounter];
-						$fileCounter++;
-						$query = $query . $dbColumnInfo . "','";
-					}
-				}
-				else	{
-					$dbColumnInfo = trim($element);
+			else	{
+				$query = $query . $dbColumn . ",";
+			}
+		}
+		$query = substr($query, 0, strlen($query) - 1);
+		$query = $query . ") VALUES ('";
+		foreach ($SkycorePostbackObject as $element) {
+			if($element->getName() == "CONTENT")	{
+				$fileCounter = 0;
+				while($element->FILE[$fileCounter] != null)	{
+					$dbColumnInfo = $element->FILE[$fileCounter];
+					$fileCounter++;
 					$query = $query . $dbColumnInfo . "','";
 				}
 			}
-			$query = substr($query, 0, strlen($query) - 2);
-			$query = $query . ")";
-			return $query;
+			else	{
+				$dbColumnInfo = trim($element);
+				$query = $query . $dbColumnInfo . "','";
+			}
 		}
-		//Function to check for and build new columns
-		//-------------------------------------------
-		private function columnCheck($SkycorePostbackObject, $dbTable, $link, $dbSQL)	{
-			foreach ($SkycorePostbackObject as $element) {
-				$dbColumn = $element->getName();
-				if($dbColumn == "NOTIFICATION")	{
-					$this->columnCheck($element, $dbTable, $link, $dbSQL);
-					return true;
-				}
-				//Convert TO/FROM tags to PHONE (TO/FROM are keywords in the SQL)
-				if($dbColumn == "TO")	{
-					$dbColumn = "PHONETO";
-				}
-				if($dbColumn == "FROM")	{
-					$dbColumn = "PHONEFROM";
-				}
-				if($dbColumn == "CONTENT")	{
-					$fileCounter = 0;
-					while($element->FILE[$fileCounter] != null)	{
-						$dbColumn = "FILE" . ($fileCounter + 1);
-						switch($dbSQL)	{
-							case 'MySQL':
-								$colScan = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
-								break;
-							case 'PSQL':
-								$colScan = pg_query($link, "SELECT $dbColumn FROM $dbTable");
-								break;
-							default:
-								return false;
-						}
-						if (!$colScan){
-							switch($dbSQL)	{
-								case 'MySQL':
-									mysqli_query($link, "ALTER TABLE $dbTable ADD $dbColumn VARCHAR(100)");
-									//echo $dbColumn . ' has been added to the database';
-									break;
-								case 'PSQL':
-									pg_query($link, "ALTER TABLE $dbTable ADD COLUMN $dbColumn VARCHAR(100)");
-									//echo $dbColumn . ' has been added to the database';
-									break;
-								default:
-									return false;
-							}
-						}
-						$fileCounter++;
-					}
-				}
-				else	{
+		$query = substr($query, 0, strlen($query) - 2);
+		$query = $query . ")";
+		return $query;
+	}
+	//Function to check for and build new columns
+	//-------------------------------------------
+	private function columnCheck($SkycorePostbackObject, $dbTable, $link, $dbSQL)	{
+		foreach ($SkycorePostbackObject as $element) {
+			$dbColumn = $element->getName();
+			if($dbColumn == "NOTIFICATION")	{
+				$this->columnCheck($element, $dbTable, $link, $dbSQL);
+				return true;
+			}
+			//Convert TO/FROM tags to PHONE (TO/FROM are keywords in the SQL)
+			if($dbColumn == "TO")	{
+				$dbColumn = "PHONETO";
+			}
+			if($dbColumn == "FROM")	{
+				$dbColumn = "PHONEFROM";
+			}
+			if($dbColumn == "CONTENT")	{
+				$fileCounter = 0;
+				while($element->FILE[$fileCounter] != null)	{
+					$dbColumn = "FILE" . ($fileCounter + 1);
 					switch($dbSQL)	{
-					case 'MySQL':
-						$colScan = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
-						break;
-					case 'PSQL':
-						$colScan = pg_query($link, "SELECT $dbColumn FROM $dbTable");
-						break;
-					default:
-						return false;
+						case 'MySQL':
+							$colScan = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
+							break;
+						case 'PSQL':
+							$colScan = pg_query($link, "SELECT $dbColumn FROM $dbTable");
+							break;
+						default:
+							return false;
 					}
-					//Build column if it does not already exist
 					if (!$colScan){
 						switch($dbSQL)	{
 							case 'MySQL':
@@ -246,56 +217,85 @@ class Skycore_API_SDK        {
 								return false;
 						}
 					}
+					$fileCounter++;
 				}
 			}
-			return true;	
-		}
-		//Function to store a postback
-		//----------------------------
-		public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable, $dbSQL)	{
-			//Convert to XML Object
-			$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
-			//Check SQL Type
-			switch($dbSQL)	{
+			else	{
+				switch($dbSQL)	{
 				case 'MySQL':
-					//Create Connection
-					$link = mysqli_connect("$dbHost","$dbUser","","$db");
-					//Check Connection
-					if (mysqli_connect_errno()){
-						echo "Failed to connect to MySQL: " . mysqli_connect_error();
-						return false;
-					}
-					//Check if the columns exist, if they do not, it will build it
-					$this->columnCheck($SkycorePostbackObject, $dbTable, $link, $dbSQL);
-					//Build the query
-					$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
-					print_r($query);
-					mysqli_query($link, $query);
-					mysqli_close($link);
-					return true;
+					$colScan = mysqli_query($link, "SELECT $dbColumn FROM $dbTable");
 					break;
 				case 'PSQL':
-					//Create Connection
-					$link = pg_connect("host=$dbHost port=6432 dbname=$db user=$dbUser password=$dbPW") or die("Failed to connect to PostgreSQL");
-					//Check Connection
-					if(!$link)	{
-						$result = pg_get_result($link);
-						echo pg_result_error($result);
-					}
-					//Check if the columns exist
-					$this->columnCheck($SkycorePostbackObject, $dbTable, $link, $dbSQL);
-					//Build the query
-					$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
-					//print_r($query);
-					pg_query($link, $query);
-					pg_close($link);
-					return true;
+					$colScan = pg_query($link, "SELECT $dbColumn FROM $dbTable");
 					break;
 				default:
 					return false;
+				}
+				//Build column if it does not already exist
+				if (!$colScan){
+					switch($dbSQL)	{
+						case 'MySQL':
+							mysqli_query($link, "ALTER TABLE $dbTable ADD $dbColumn VARCHAR(100)");
+							//echo $dbColumn . ' has been added to the database';
+							break;
+						case 'PSQL':
+							pg_query($link, "ALTER TABLE $dbTable ADD COLUMN $dbColumn VARCHAR(100)");
+							//echo $dbColumn . ' has been added to the database';
+							break;
+						default:
+							return false;
+					}
+				}
 			}
 		}
-		//Function to handle multidimensional arrays
+		return true;	
+	}
+	//Function to store a postback
+	//----------------------------
+	public function storePostback($SkycorePostback, $dbHost, $dbUser, $dbPW, $db, $dbTable, $dbSQL)	{
+		//Convert to XML Object
+		$SkycorePostbackObject = simplexml_load_string($SkycorePostback);
+		//Check SQL Type
+		switch($dbSQL)	{
+			case 'MySQL':
+				//Create Connection
+				$link = mysqli_connect("$dbHost","$dbUser","","$db");
+				//Check Connection
+				if (mysqli_connect_errno()){
+					echo "Failed to connect to MySQL: " . mysqli_connect_error();
+					return false;
+				}
+				//Check if the columns exist, if they do not, it will build it
+				$this->columnCheck($SkycorePostbackObject, $dbTable, $link, $dbSQL);
+				//Build the query
+				$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
+				print_r($query);
+				mysqli_query($link, $query);
+				mysqli_close($link);
+				return true;
+				break;
+			case 'PSQL':
+				//Create Connection
+				$link = pg_connect("host=$dbHost port=6432 dbname=$db user=$dbUser password=$dbPW") or die("Failed to connect to PostgreSQL");
+				//Check Connection
+				if(!$link)	{
+					$result = pg_get_result($link);
+					echo pg_result_error($result);
+				}
+				//Check if the columns exist
+				$this->columnCheck($SkycorePostbackObject, $dbTable, $link, $dbSQL);
+				//Build the query
+				$query = $this->constructQuery($SkycorePostbackObject, $dbTable);
+				//print_r($query);
+				pg_query($link, $query);
+				pg_close($link);
+				return true;
+				break;
+			default:
+				return false;
+		}
+	}
+	//Function to handle multidimensional arrays
         //------------------------------------------
         private function innerArrayCheck($request, $currentXML_tag)        {
                 //Initialize the main tag
