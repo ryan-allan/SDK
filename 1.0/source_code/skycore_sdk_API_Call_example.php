@@ -65,11 +65,11 @@ $request = array(
     	'action'  => $action,
   	'subject' => $subject,
 	'content' => array(
-    	'name' => $name,
-		'sequence' => array(
-			'slide' => $slide1,
-			'slide' => $slide2
-		)
+    		'name' => $name,
+			'sequence' => array(
+				'slide' => $slide1,
+				'slide' => $slide2
+			)
 	)
 );
 */
