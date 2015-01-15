@@ -43,20 +43,20 @@ $subject = 'THE SUBJECT HERE';
 $name = 'THE NAME HERE';
 $slide1 = array(
         	'image' => array(
-            		'url' => 'image.example.com'
+            		'url' => 'some image url'
         	),
         	'audio' => array(
-            		'url' => 'audio.example.com'
+            		'url' => 'some audio url'
         	),
         	'text' => 'Some Text',
         	'duration' => '5'
     	);
 $slide2 = array(
         	'image' => array(
-            		'url' => 'image.example.com'
+            		'url' => 'some image url'
         	),
         	'audio' => array(
-            		'url' => 'audio.example.com'
+            		'url' => 'some audio url'
 		 ),
         	'text' => 'Some Text',
         	'duration' => '10'
@@ -64,9 +64,13 @@ $slide2 = array(
 $request = array(
     	'action'  => $action,
   	'subject' => $subject,
+	'content' => array(
     	'name' => $name,
-    	'slide' => $slide1,
-    	'slide' => $slide2
+		'sequence' => array(
+			'slide' => $slide1,
+			'slide' => $slide2
+		)
+	)
 );
 */
 
